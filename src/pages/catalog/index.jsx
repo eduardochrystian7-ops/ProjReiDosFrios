@@ -3,7 +3,7 @@ import { useProdutos } from '../../hooks/useProdutos';
 export default function Catalog() {
   // Importando apenas o que essa tela precisa ler e usar
   const { produtos, excluirProduto } = useProdutos();
-
+// comentário
   return (
     <div>
       <h1>Catálogo de Produtos</h1>
