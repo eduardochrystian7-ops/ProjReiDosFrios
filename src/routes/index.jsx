@@ -1,18 +1,17 @@
 import { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-// Importação Lazy para otimização de performance
-const Login = lazy(() => import('../pages/Login'));
-const Catalog = lazy(() => import('../pages/Catalog'));
-const Charcuterie = lazy(() => import('../pages/Charcuterie'));
-const Kits = lazy(() => import('../pages/Kits'));
-const ProductDetails = lazy(() => import('../pages/ProductDetails'));
-const Profile = lazy(() => import('../pages/Profile'));
+// Importando com as letras minúsculas exatas das suas pastas
+const Login = lazy(() => import('../pages/login'));
+const Catalog = lazy(() => import('../pages/catalog'));
+const Charcuterie = lazy(() => import('../pages/charcuterie'));
+const Kits = lazy(() => import('../pages/kits'));
+const ProductDetails = lazy(() => import('../pages/productDetails'));
+const Profile = lazy(() => import('../pages/profile'));
 
-// Um componente simples de loading enquanto a tela carrega
 const LoadingWindow = () => <div>Carregando o império...</div>;
 
-export default function AppRoutes() {
+export function AppRoutes() { // Pode exportar direto ou usar export default no final
   return (
     <BrowserRouter>
       <Suspense fallback={<LoadingWindow />}>

@@ -1,0 +1,173 @@
+/* Container que ocupa toda a tela com a imagem de fundo */
+.login-page-container {
+  min-height: 100vh;
+  background-color: #1a1a1a; /* Cor de fallback */
+  background-image: url('../../assets/sua-imagem-de-fundo.jpg'); /* Exemplo de import de asset */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  font-family: 'Georgia', serif; /* Ajuste para a fonte do seu projeto */
+}
+
+/* Camada escura por cima da imagem para dar contraste */
+.login-overlay {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 1rem;
+}
+
+.login-header h1 {
+  color: #e4c27a; /* Dourado */
+  letter-spacing: 2px;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.login-header p {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #a0a0a0;
+  text-align: center;
+}
+
+/* O "Card" centralizado */
+.login-form-card {
+  background: rgba(30, 30, 30, 0.85);
+  padding: 2rem;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+}
+
+.input-group label {
+  display: block;
+  color: #e4c27a;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+
+.input-wrapper .icon {
+  margin-right: 10px;
+  color: #e4c27a;
+}
+
+.input-wrapper input {
+  background: transparent;
+  border: none;
+  color: #fff;
+  width: 100%;
+  outline: none;
+  font-size: 1rem;
+}
+
+.forgot-password {
+  text-align: right;
+  margin-bottom: 1.5rem;
+}
+
+.forgot-password a {
+  color: #a0a0a0;
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 1rem;
+  background-color: #e4c27a;
+  color: #111;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: opacity 0.2s;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.divider {
+  text-align: center;
+  margin: 1.5rem 0;
+  position: relative;
+}
+
+.divider::before, .divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: #333;
+}
+
+.divider::before { left: 0; }
+.divider::after { right: 0; }
+
+.divider span {
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.btn-secondary {
+  width: 100%;
+  padding: 1rem;
+  background-color: transparent;
+  color: #e4c27a;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-secondary:hover {
+  text-decoration: underline;
+}
+
+.exclusive-text {
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.login-footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.login-footer a {
+  color: #a0a0a0;
+  text-decoration: none;
+  font-size: 0.8rem;
+}
