@@ -1,0 +1,9 @@
+:root {
+  --bg-dark: #121212; /* Fundo principal escuro */
+  --bg-card: #ffffff; /* Fundo branco dos cards */
+  --text-primary: #ffffff; /* Texto claro no fundo escuro */
+  --text-dark: #333333; /* Texto escuro dentro dos cards brancos */
+  --gold-accent: #C5A059; /* Dourado Rei dos Frios (ajuste o HEX exato do Figma) */
+  --gold-hover: #D4B26A; /* Dourado mais claro para hover de botões */
+  --gray-text: #888888; /* Texto de origem/maturação */
+}

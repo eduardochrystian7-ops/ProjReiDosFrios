@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ProductCard from '../../components/common/ProductCard';
+import { ProductCard } from '../productDetails';
 import './Catalog.css';
 
 export default function Catalog() {

@@ -1,5 +1,6 @@
 import { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import PrivateRoute from './PrivateRoute';
 
 // Importando com as letras minúsculas exatas das suas pastas
 const Login = lazy(() => import('../pages/login'));
@@ -17,7 +18,7 @@ export function AppRoutes() { // Pode exportar direto ou usar export default no 
       <Suspense fallback={<LoadingWindow />}>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/catalogo" element={<Catalog />} />
+          <Route path="/catalogo" element={<PrivateRoute><Catalog /></PrivateRoute>} />
           <Route path="/charcutaria" element={<Charcuterie />} />
           <Route path="/kits" element={<Kits />} />
           <Route path="/produto/:id" element={<ProductDetails />} />

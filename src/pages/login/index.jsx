@@ -1,20 +1,23 @@
-import { useState} from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './styles.css'; // Importando o CSS local da pasta
 
 export function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState(() => localStorage.getItem('@ReiDosFrios:email') ?? '');
   const [senha, setSenha] = useState(() => localStorage.getItem('@ReiDosFrios:senha') ?? '');
 
   const handleLogin = (e) => {
     e.preventDefault();
-    
+
     // Salva as credenciais no localStorage (Conforme solicitado)
     // AVISO: Em aplicações reais, NUNCA salve senhas em texto puro no localStorage por questões de segurança.
     localStorage.setItem('@ReiDosFrios:email', email);
     localStorage.setItem('@ReiDosFrios:senha', senha);
 
     console.log('Autenticando com:', { email, senha });
-    // Aqui entraria a chamada para sua API ou contexto de autenticação
+    // Navega para o catálogo após "login" bem-sucedido
+    navigate('/catalogo');
   };
 
   return (
