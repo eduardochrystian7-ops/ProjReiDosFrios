@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ProductCard } from '../productDetails';
 import './Catalog.css';
 
@@ -40,6 +40,7 @@ export default function Catalog() {
     }
   ]);
 
+  const navigate = useNavigate();
   const [categoriaAtiva, setCategoriaAtiva] = useState('QUEIJOS');
 
   return (
@@ -54,7 +55,7 @@ export default function Catalog() {
           <a href="#entregas">ENTREGAS</a>
           <a href="#contato">CONTATO</a>
         </nav>
-        <button className="btn-conta">MINHA CONTA</button>
+        <button type="button" className="btn-conta" onClick={() => navigate('/perfil')}>MINHA CONTA</button>
       </header>
 
       {/* 2. MENU DE CATEGORIAS */}

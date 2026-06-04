@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Kits.css';
 
 export default function Kits() {
@@ -45,7 +45,7 @@ export default function Kits() {
           </div>
         </div>
         <nav className="sidebar-nav">
-          <button className="nav-item">Minha Conta</button>
+          <Link to="/perfil" className="nav-item">Minha Conta</Link>
           <button className="nav-item">Pedidos</button>
           <button className="nav-item">Favoritos</button>
           <button className="nav-item">Endereços</button>
