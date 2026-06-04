@@ -1,9 +1,294 @@
-:root {
-  --bg-dark: #121212; /* Fundo principal escuro */
-  --bg-card: #ffffff; /* Fundo branco dos cards */
-  --text-primary: #ffffff; /* Texto claro no fundo escuro */
-  --text-dark: #333333; /* Texto escuro dentro dos cards brancos */
-  --gold-accent: #C5A059; /* Dourado Rei dos Frios (ajuste o HEX exato do Figma) */
-  --gold-hover: #D4B26A; /* Dourado mais claro para hover de botões */
-  --gray-text: #888888; /* Texto de origem/maturação */
+/* =========================================
+   Container Global da Tela de Catálogo
+========================================= */
+.catalog-container {
+  background-color: #121212; /* Fundo escuro principal */
+  color: #ffffff;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif; /* Use a fonte definida no seu projeto */
+  padding-bottom: 50px;
+}
+
+/* =========================================
+   1. Header (Cabeçalho)
+========================================= */
+.catalog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: #0a0a0a;
+  border-bottom: 1px solid #222;
+}
+
+.logo-text {
+  color: #C5A059; /* Dourado Rei dos Frios */
+  font-family: 'Playfair Display', serif; /* Fonte clássica para o logo */
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.catalog-header nav {
+  display: flex;
+  gap: 40px;
+}
+
+.catalog-header nav a {
+  color: #888888;
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+}
+
+.catalog-header nav a.active,
+.catalog-header nav a:hover {
+  color: #C5A059;
+  border-bottom: 2px solid #C5A059;
+}
+
+.btn-conta {
+  background: transparent;
+  color: #888888;
+  border: 1px solid #333333;
+  padding: 10px 20px;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-conta:hover {
+  color: #C5A059;
+  border-color: #C5A059;
+}
+
+/* =========================================
+   2. Menu de Categorias
+========================================= */
+.category-menu {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 20px;
+}
+
+.btn-category {
+  background-color: #2a2a2a;
+  color: #888888;
+  border: 1px solid transparent;
+  padding: 15px 35px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-category.active,
+.btn-category:hover {
+  color: #C5A059;
+  border-color: #C5A059;
+}
+
+/* =========================================
+   3. Banner Promocional (Oferta Relâmpago)
+========================================= */
+.promo-banner {
+  /* Fundo degradê esverdeado baseado na imagem */
+  background: linear-gradient(135deg, #3a6b6d, #84b2af);
+  margin: 0 50px 50px 50px;
+  padding: 40px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.promo-content {
+  max-width: 50%;
+  z-index: 2;
+}
+
+.promo-content h2 {
+  color: #e5e5e5;
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.promo-content h3 {
+  color: #ffffff;
+  font-size: 2.2rem;
+  margin: 0 0 15px 0;
+  font-family: 'Playfair Display', serif;
+}
+
+.promo-content p {
+  color: #f0f0f0;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* Cronômetro da Promoção */
+.promo-timer {
+  display: flex;
+  gap: 15px;
+  z-index: 2;
+}
+
+.timer-box {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 15px 20px;
+  text-align: center;
+  min-width: 80px;
+}
+
+.timer-box span {
+  display: block;
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.timer-box small {
+  font-size: 0.65rem;
+  color: #cccccc;
+  letter-spacing: 2px;
+  margin-top: 5px;
+  display: block;
+}
+
+/* =========================================
+   4. Grid de Produtos
+========================================= */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 produtos por linha */
+  gap: 25px;
+  max-width: 1300px;
+  margin: 0 auto 60px auto;
+  padding: 0 50px;
+}
+
+/* =========================================
+   5. Seção de Kits Gastronômicos (Rodapé)
+========================================= */
+.kits-section {
+  display: flex;
+  margin: 0 50px;
+  background-color: #1a1a1a;
+  border: 1px solid #2a2a2a;
+}
+
+.kits-text {
+  flex: 1;
+  padding: 60px;
+}
+
+.kits-title {
+  color: #C5A059;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 25px;
+}
+
+.kits-text p {
+  color: #cccccc;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  margin-bottom: 45px;
+  max-width: 90%;
+}
+
+.kits-buttons {
+  display: flex;
+  gap: 40px;
+}
+
+.kit-option {
+  border-left: 2px solid #C5A059;
+  padding-left: 15px;
+}
+
+.kit-option h4 {
+  color: #ffffff;
+  margin: 0 0 5px 0;
+  font-size: 1rem;
+}
+
+.kit-option p {
+  color: #888888;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.kits-image {
+  flex: 1;
+  background-color: #222222;
+  /* Use o background-image abaixo quando tiver a foto da tábua na pasta public/assets */
+  /* background-image: url('/assets/tabua-frios-footer.jpg'); */
+  background-size: cover;
+  background-position: center;
+}
+
+.image-placeholder {
+  height: 100%;
+  min-height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555555;
+}
+
+/* =========================================
+   Responsividade (Telas Menores)
+========================================= */
+@media (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr); /* Muda para 2 colunas */
+  }
+  
+  .catalog-header nav {
+    display: none; /* Esconde o menu de navegação em tablets/mobile para criar um Menu Hamburguer futuramente */
+  }
+  
+  .promo-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+  
+  .promo-content {
+    max-width: 100%;
+  }
+  
+  .kits-section {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: 1fr; /* Muda para 1 coluna no celular */
+    padding: 0 20px;
+  }
+  
+  .category-menu {
+    flex-wrap: wrap;
+  }
+  
+  .promo-banner {
+    margin: 0 20px 40px 20px;
+    padding: 30px;
+  }
 }

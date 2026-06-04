@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ProductCard } from '../productDetails';
 import './Catalog.css';
 
@@ -48,6 +49,7 @@ export default function Catalog() {
         <h1 className="logo-text">Rei dos Frios</h1>
         <nav>
           <a href="#produtos" className="active">PRODUTOS</a>
+          <Link to="/kits">KITS</Link>
           <a href="#promocoes">PROMOÇÕES</a>
           <a href="#entregas">ENTREGAS</a>
           <a href="#contato">CONTATO</a>
@@ -96,29 +98,6 @@ export default function Catalog() {
             tag={produto.tag}
           />
         ))}
-      </section>
-
-      {/* 5. SEÇÃO DE KITS (Base do design) */}
-      <section className="kits-section">
-        <div className="kits-text">
-          <h2 className="kits-title">Kits Gastronômicos</h2>
-          <p>Nossas tábuas são montadas por especialistas, combinando sabores que se complementam e criam uma experiência sensorial completa para seus convidados.</p>
-          
-          <div className="kits-buttons">
-            <div className="kit-option">
-              <h4>Tábua Degustação</h4>
-              <p>4 tipos de queijos + 2 frios</p>
-            </div>
-            <div className="kit-option">
-              <h4>Kit Noite de Vinhos</h4>
-              <p>Seleção curada para tintos</p>
-            </div>
-          </div>
-        </div>
-        <div className="kits-image">
-          {/* Imagem representativa da tábua de frios */}
-          <div className="image-placeholder">Imagem da Tábua</div> 
-        </div>
       </section>
     </main>
   );

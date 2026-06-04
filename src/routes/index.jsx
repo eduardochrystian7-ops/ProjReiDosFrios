@@ -19,10 +19,10 @@ export function AppRoutes() { // Pode exportar direto ou usar export default no 
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/catalogo" element={<PrivateRoute><Catalog /></PrivateRoute>} />
-          <Route path="/charcutaria" element={<Charcuterie />} />
-          <Route path="/kits" element={<Kits />} />
-          <Route path="/produto/:id" element={<ProductDetails />} />
-          <Route path="/perfil" element={<Profile />} />
+          <Route path="/charcutaria" element={<PrivateRoute><Charcuterie /></PrivateRoute>} />
+          <Route path="/kits" element={<PrivateRoute><Kits /></PrivateRoute>} />
+          <Route path="/produto/:id" element={<PrivateRoute><ProductDetails /></PrivateRoute>} />
+          <Route path="/perfil" element={<PrivateRoute><Profile /></PrivateRoute>} />
         </Routes>
       </Suspense>
     </BrowserRouter>
