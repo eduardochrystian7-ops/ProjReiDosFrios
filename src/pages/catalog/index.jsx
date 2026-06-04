@@ -3,44 +3,9 @@ import { ProductCard } from '../productDetails';
 import './Catalog.css';
 
 export default function Catalog() {
-  // Simulando os dados iniciais baseados no design do Figma
-  const [produtos] = useState([
-    {
-      id: 1,
-      nome: 'Gorgonzola Dolce',
-      origem: 'ORIGEM: ITÁLIA',
-      preco: 145.90,
-      imagem: '/assets/gorgonzola.png', // Lembre-se de colocar as imagens na pasta public/assets
-      tag: 'Premium'
-    },
-    {
-      id: 2,
-      nome: 'Prosciutto di Parma',
-      origem: 'MATURADO 18 MESES',
-      preco: 289.00,
-      imagem: '/assets/prosciutto.png',
-      tag: null
-    },
-    {
-      id: 3,
-      nome: 'Salame Milano',
-      origem: 'TEMPEROS NOBRES',
-      preco: 98.50,
-      imagem: '/assets/salame.png',
-      tag: null
-    },
-    {
-      id: 4,
-      nome: 'Queijo Brie Double Cream',
-      origem: 'TEXTURA AVELUDADA',
-      preco: 112.00,
-      imagem: '/assets/brie.png',
-      tag: null
-    }
-  ]);
-
-  const [categoriaAtiva, setCategoriaAtiva] = useState('QUEIJOS');
-
+  // Importando apenas o que essa tela precisa ler e usar
+  const { produtos, excluirProduto } = useProdutos();
+// comentário
   return (
     <main className="catalog-container">
       {/* 1. HEADER SIMPLIFICADO (O ideal é extrair para um componente <Header />) */}
