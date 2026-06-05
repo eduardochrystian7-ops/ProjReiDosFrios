@@ -1,5 +1,19 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './style.css';
+
+function LogoutButton() {
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    // Aqui podemos limpar tokens/estado de autenticação se houver
+    navigate('/', { replace: true });
+  }
+
+  return (
+    <button onClick={handleLogout} className="nav-item sair-btn">Sair</button>
+  );
+}
 
 export default function Profile() {
   // Simulando dados do usuário logado (posteriormente virão de um Context ou API)
@@ -9,6 +23,8 @@ export default function Profile() {
     pontos: '12.450',
     proximoNivel: 'Imperial Diamond'
   });
+
+  const navigate = useNavigate();
 
   // Simulando o histórico de pedidos visível no design
   const [historicoPedidos] = useState([
@@ -45,12 +61,17 @@ export default function Profile() {
           <button className="nav-item">Pedidos</button>
           <button className="nav-item">Favoritos</button>
           <button className="nav-item">Endereços</button>
-          <button className="nav-item sair-btn">Sair</button>
+          <LogoutButton />
         </nav>
       </aside>
 
       {/* CONTEÚDO PRINCIPAL DO PERFIL */}
       <main className="profile-main-content">
+        <div className="profile-topbar">
+          <button className="btn-back" onClick={() => navigate('/catalogo')}>
+            <span className="back-icon">←</span> Voltar
+          </button>
+        </div>
         
         {/* HEADER INTERNO / BOAS-VINDAS */}
         <section className="profile-welcome-section">

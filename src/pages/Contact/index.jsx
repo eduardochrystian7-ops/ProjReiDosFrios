@@ -1,0 +1,136 @@
+import  { useState } from 'react';
+import './style.css';
+
+export default function Contact() {
+  const [formData, setFormData] = useState({
+    nome: '',
+    email: '',
+    assunto: 'Dúvida Geral',
+    mensagem: ''
+  });
+  const [enviado, setEnviado] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Aqui entraria a integração com o backend para enviar o e-mail
+    console.log('Mensagem enviada:', formData);
+    setEnviado(true);
+    
+    // Reseta o formulário após 3 segundos
+    setTimeout(() => {
+      setEnviado(false);
+      setFormData({ nome: '', email: '', assunto: 'Dúvida Geral', mensagem: '' });
+    }, 3000);
+  };
+
+  return (
+    <div className="contact-container">
+      {/* HEADER REUTILIZADO (Idealmente extraído para um componente global) */}
+      <header className="contact-header">
+        <h1 className="logo-text">Rei dos Frios</h1>
+        <nav>
+          <a href="/catalogo">PRODUTOS</a>
+          <a href="#promocoes">PROMOÇÕES</a>
+         
+          <a href="/contato" className="active">CONTATO</a>
+        </nav>
+        <button className="btn-conta">MINHA CONTA</button>
+      </header>
+
+      <main className="contact-main">
+        <div className="contact-hero">
+          <span className="subtitle">ATENDIMENTO IMPERIAL</span>
+          <h2 className="title">Fale com o Rei</h2>
+          <p>Nossos especialistas estão à disposição para auxiliar com harmonizações, pedidos personalizados e suporte corporativo.</p>
+        </div>
+
+        <div className="contact-grid">
+          {/* COLUNA ESQUERDA: INFORMAÇÕES DE CONTATO */}
+          <section className="contact-info-section">
+            <div className="info-card">
+              <h3 className="info-title">Boutique Sede</h3>
+              <p>TV D João VI, 264 - D João VI</p>
+              <p>Capanema - PA, 68701-090</p>
+            </div>
+
+            <div className="info-card">
+              <h3 className="info-title">Concierge & Vendas</h3>
+              <p>WhatsApp: +55 (91) 98188-3429</p>
+              <p>Telefone: (91) 8522-0399</p>
+              <span className="info-note">Seg a Sáb, das 08h às 19h</span>
+            </div>
+
+            <div className="info-card">
+              <h3 className="info-title">Assessoria Corporativa</h3>
+              <p>eventos@reidosfrios.com.br</p>
+              <span className="info-note">Para kits empresariais e eventos</span>
+            </div>
+          </section>
+
+          {/* COLUNA DIREITA: FORMULÁRIO */}
+          <section className="contact-form-section">
+            <form onSubmit={handleSubmit} className="contact-form">
+              <div className="form-group">
+                <label htmlFor="nome">Nome Completo</label>
+                <input 
+                  type="text" 
+                  id="nome" 
+                  name="nome"
+                  value={formData.nome}
+                  onChange={handleChange}
+                  required 
+                  placeholder="Ex: Dom Pedro II"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="email">E-mail de Contato</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required 
+                  placeholder="imperador@exemplo.com"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="assunto">Assunto</label>
+                <select id="assunto" name="assunto" value={formData.assunto} onChange={handleChange}>
+                  <option value="Dúvida Geral">Dúvida Geral</option>
+                  <option value="Suporte com Pedido">Suporte com Pedido</option>
+                  <option value="Kits Corporativos">Kits Corporativos (B2B)</option>
+                  <option value="Feedback">Feedback e Sugestões</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="mensagem">Mensagem</label>
+                <textarea 
+                  id="mensagem" 
+                  name="mensagem"
+                  rows="5"
+                  value={formData.mensagem}
+                  onChange={handleChange}
+                  required 
+                  placeholder="Escreva sua mensagem aqui..."
+                ></textarea>
+              </div>
+
+              <button type="submit" className="btn-submit" disabled={enviado}>
+                {enviado ? 'MENSAGEM ENVIADA ✓' : 'ENVIAR MENSAGEM'}
+              </button>
+            </form>
+          </section>
+        </div>
+      </main>
+    </div>
+  );
+}

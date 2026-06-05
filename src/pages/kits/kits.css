@@ -76,6 +76,34 @@
   overflow-y: auto;
 }
 
+/* Topbar dentro da área de conteúdo para botões utilitários */
+.kits-topbar {
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+}
+
+.btn-back {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-back:hover {
+  border-color: rgba(197,160,89,0.9);
+  color: #C5A059;
+}
+
+.back-icon {
+  font-size: 1.1rem;
+}
+
 /* Hero Banner */
 .kits-hero {
   background-color: #222; /* Substitua por background-image no futuro */

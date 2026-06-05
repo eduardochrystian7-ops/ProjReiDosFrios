@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useProdutos } from '../../hooks/useProdutos';
 import './Kits.css';
 
 export default function Kits() {
   const navigate = useNavigate();
+  const { adicionarProduto } = useProdutos();
 
   // Dados simulados para o layout (prontos para o hook do CRUD depois)
   const [kitsEmDestaque] = useState([
@@ -55,6 +57,11 @@ export default function Kits() {
 
       {/* CONTEÚDO PRINCIPAL */}
       <main className="kits-main-content">
+        <div className="kits-topbar">
+          <button className="btn-back" onClick={() => navigate('/catalogo')}>
+            <span className="back-icon">←</span> Voltar
+          </button>
+        </div>
         
         {/* HERO BANNER */}
         <section className="kits-hero">
@@ -80,7 +87,19 @@ export default function Kits() {
                   <h2>{kit.nome}</h2>
                   <p>{kit.descricao}</p>
                   <span className="price">R$ {kit.preco.toFixed(2).replace('.', ',')}</span>
-                  <button className="btn-primary btn-add">Adicionar ao Carrinho</button>
+                  <button
+                    className="btn-primary btn-add"
+                    onClick={() => adicionarProduto({
+                      nome: kit.nome,
+                      descricao: kit.descricao,
+                      preco: kit.preco,
+                      imagem: kit.imagem,
+                      tag: kit.tag,
+                      tipo: kit.tipo
+                    })}
+                  >
+                    Adicionar ao Carrinho
+                  </button>
                 </div>
               </div>
             ))}

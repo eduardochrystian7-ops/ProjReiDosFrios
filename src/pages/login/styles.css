@@ -22,6 +22,20 @@
   padding: 2rem 1rem;
 }
 
+.login-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.login-logo {
+  width: 120px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
 .login-header h1 {
   color: #e4c27a; /* Dourado */
   letter-spacing: 2px;
