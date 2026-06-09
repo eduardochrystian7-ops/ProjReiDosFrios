@@ -58,7 +58,7 @@ export default function Catalog() {
         <nav>
           <Link to="/catalogo" className="active">PRODUTOS</Link>
           <Link to="/kits">KITS</Link>
-          <a href="#promocoes">PROMOÇÕES</a>
+          <Link to="/promocoes">PROMOÇÕES</Link>
           <a href="#charcutaria">Charcutaria</a>
           <Link to="/contato">CONTATO</Link>
         </nav>

@@ -1,0 +1,240 @@
+/* Container e Header (Seguindo o padrão do Contato) */
+.promocoes-container {
+  font-family: 'Arial', sans-serif; /* Ajuste para a fonte do seu projeto */
+  color: #333;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+.promocoes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 4rem;
+  background-color: #1a1a1a;
+  color: #d4af37; /* Dourado Real */
+}
+
+.promocoes-header .logo-text {
+  margin: 0;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.promocoes-header nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 2rem;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+.promocoes-header nav a:hover,
+.promocoes-header nav a.active {
+  color: #d4af37;
+  font-weight: bold;
+}
+
+/* Hero Section */
+.promocoes-main {
+  padding: 0 4rem 4rem;
+}
+
+.promocoes-hero {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.promocoes-hero .subtitle {
+  color: #d4af37;
+  font-weight: bold;
+  letter-spacing: 3px;
+  font-size: 0.8rem;
+}
+
+.promocoes-hero .title {
+  font-size: 2.5rem;
+  margin: 0.5rem 0 1rem;
+  color: #1a1a1a;
+}
+
+/* Lista de Promoções */
+.promo-list-section {
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.promo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Cards de Produto */
+.promo-card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.promo-card:hover {
+  transform: translateY(-5px);
+}
+
+.promo-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #b22222; /* Vermelho bordô para ofertas */
+  color: #fff;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 20px;
+  z-index: 2;
+}
+
+.promo-card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.promo-card-image.placeholder {
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+}
+
+.promo-card-content {
+  padding: 1.5rem;
+}
+
+.promo-tag {
+  color: #d4af37;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.promo-card-content h4 {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.promo-card-content .origem {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.promo-card-content .descricao {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+}
+
+.price-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.price-label {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.promo-price {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #b22222;
+}
+
+/* Botões */
+.btn-primary {
+  background-color: #1a1a1a;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #d4af37;
+  color: #1a1a1a;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.btn-submit {
+  background-color: #d4af37;
+  color: #1a1a1a;
+  border: none;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn-submit:disabled {
+  background-color: #a8cd89;
+  cursor: not-allowed;
+}
+
+/* Clube VIP Newsletter */
+.vip-club-section {
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 3rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.vip-club-content h3 {
+  color: #d4af37;
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+}
+
+.vip-form {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.vip-form input {
+  flex: 1;
+  padding: 1rem;
+  border: 1px solid #444;
+  background: #333;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.vip-form input:focus {
+  outline: none;
+  border-color: #d4af37;
+}
