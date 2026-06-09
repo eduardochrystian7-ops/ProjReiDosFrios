@@ -37,12 +37,6 @@ export default function Kits() {
   return (
     <div className="kits-layout">
       <main className="kits-main-content">
-        <div className="kits-topbar">
-          <button className="btn-back" onClick={() => navigate('/catalogo')}>
-            <span className="back-icon">←</span> Voltar
-          </button>
-        </div>
-        
         {/* HERO BANNER */}
         <section className="kits-hero">
           <div className="hero-content">

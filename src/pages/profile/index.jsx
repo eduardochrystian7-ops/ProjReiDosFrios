@@ -68,11 +68,6 @@ export default function Profile() {
 
       {/* CONTEÚDO PRINCIPAL DO PERFIL */}
       <main className="profile-main-content">
-        <div className="profile-topbar">
-          <button className="btn-back" onClick={() => navigate('/catalogo')}>
-            <span className="back-icon">←</span> Voltar
-          </button>
-        </div>
         
         {/* HEADER INTERNO / BOAS-VINDAS */}
         <section className="profile-welcome-section">
