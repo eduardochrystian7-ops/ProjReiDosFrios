@@ -59,7 +59,7 @@ export default function Catalog() {
           <Link to="/catalogo" className="active">PRODUTOS</Link>
           <Link to="/kits">KITS</Link>
           <Link to="/promocoes">PROMOÇÕES</Link>
-          <a href="#charcutaria">Charcutaria</a>
+          <Link to="/charcutaria">CHARCUTARIA</Link>
           <Link to="/contato">CONTATO</Link>
         </nav>
         <button type="button" className="btn-conta" onClick={() => navigate('/perfil')}>MINHA CONTA</button>
