@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './style.css';
+import CartManager from '../../components/CartManager';
 
 function LogoutButton() {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ function LogoutButton() {
 
 export default function Profile() {
   const navigate = useNavigate();
+  const location = useLocation();
   
   // Controle de abas: 'conta', 'pedidos', 'favoritos', 'enderecos'
   const [abaAtiva, setAbaAtiva] = useState('conta');
@@ -98,6 +100,12 @@ export default function Profile() {
       principal: false
     }
   ]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const tab = params.get('tab');
+    if (tab) setAbaAtiva(tab);
+  }, [location.search]);
 
   return (
     <div className="profile-layout">
@@ -196,36 +204,41 @@ export default function Profile() {
 
         {/* ================= ABA: PEDIDOS ================= */}
         {abaAtiva === 'pedidos' && (
-          <section className="product-manager-section">
-            <div className="product-manager-header">
-              <div>
-                <h3 className="section-title" style={{ marginBottom: '5px' }}>Meus Pedidos</h3>
-                <p className="section-description">Acompanhe o envio e confira os detalhes das suas aquisições.</p>
-              </div>
-            </div>
+          <>
+            {/* Cart manager moved here */}
+            <CartManager />
 
-            <div className="product-list">
-              {detalhesPedidos.map((pedido) => (
-                <div key={pedido.id} className="product-card-manage">
-                  <div className="product-card-main">
-                    <div className="product-card-image placeholder">Sem Imagem</div>
-                    <div className="product-card-details">
-                      <span className="profile-subtitle" style={{ fontSize: '0.7rem', marginBottom: '4px' }}>
-                        {pedido.codigo} — {pedido.data}
-                      </span>
-                      <h4>{pedido.titulo}</h4>
-                      <p>{pedido.descricao}</p>
-                      <span className="product-card-price">{pedido.preco}</span>
+            <section className="product-manager-section">
+              <div className="product-manager-header">
+                <div>
+                  <h3 className="section-title" style={{ marginBottom: '5px' }}>Meus Pedidos</h3>
+                  <p className="section-description">Acompanhe o envio e confira os detalhes das suas aquisições.</p>
+                </div>
+              </div>
+
+              <div className="product-list">
+                {detalhesPedidos.map((pedido) => (
+                  <div key={pedido.id} className="product-card-manage">
+                    <div className="product-card-main">
+                      <div className="product-card-image placeholder">Sem Imagem</div>
+                      <div className="product-card-details">
+                        <span className="profile-subtitle" style={{ fontSize: '0.7rem', marginBottom: '4px' }}>
+                          {pedido.codigo} — {pedido.data}
+                        </span>
+                        <h4>{pedido.titulo}</h4>
+                        <p>{pedido.descricao}</p>
+                        <span className="product-card-price">{pedido.preco}</span>
+                      </div>
+                    </div>
+                    <div className="product-actions">
+                      <button className="btn-ver-detalhes" style={{ borderColor: '#C5A059', color: '#fff' }}>Rastrear Item</button>
+                      <button className="btn-ver-detalhes">Nota Fiscal</button>
                     </div>
                   </div>
-                  <div className="product-actions">
-                    <button className="btn-ver-detalhes" style={{ borderColor: '#C5A059', color: '#fff' }}>Rastrear Item</button>
-                    <button className="btn-ver-detalhes">Nota Fiscal</button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
+                ))}
+              </div>
+            </section>
+          </>
         )}
 
         {/* ================= ABA: FAVORITOS ================= */}
