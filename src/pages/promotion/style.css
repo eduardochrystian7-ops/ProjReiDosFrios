@@ -92,13 +92,15 @@
 /* Lista de Promoções */
 .promo-list-section {
   margin-bottom: 4rem;
+  text-align: center;
 }
 
 .section-title {
+  display: inline-block;
   font-size: 1.4rem;
   font-family: 'Playfair Display', serif;
   color: #ffffff;
-  margin-bottom: 2rem;
+  margin: 0 0 2rem;
   border-bottom: 1px solid #222222;
   padding-bottom: 0.5rem;
 }
