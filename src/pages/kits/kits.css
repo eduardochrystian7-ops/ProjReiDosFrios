@@ -1,77 +1,12 @@
-/* Layout Principal: Divisão entre Sidebar e Conteúdo */
+/* Layout Principal */
 .kits-layout {
-  display: flex;
   min-height: 100vh;
   background-color: #121212;
   color: #ffffff;
 }
 
-/* Sidebar Profile */
-.sidebar-profile {
-  width: 250px;
-  background-color: #1a1a1a;
-  padding: 30px 20px;
-  border-right: 1px solid #333;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-}
-
-.profile-header {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 40px;
-}
-
-.avatar-placeholder {
-  width: 50px;
-  height: 50px;
-  background-color: #333;
-  border-radius: 5px;
-}
-
-.profile-header h3 {
-  color: #C5A059;
-  font-size: 1rem;
-  margin: 0;
-}
-
-.profile-header p {
-  color: #888;
-  font-size: 0.8rem;
-  margin: 0;
-}
-
-.sidebar-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.nav-item {
-  background: none;
-  border: none;
-  color: #ccc;
-  text-align: left;
-  padding: 10px 0;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.nav-item:hover {
-  color: #C5A059;
-}
-
-.sair-btn {
-  margin-top: auto;
-  color: #888;
-}
-
 /* Área de Conteúdo Principal */
 .kits-main-content {
-  flex: 1;
   padding: 0; /* O Hero encosta nas bordas */
   overflow-y: auto;
 }

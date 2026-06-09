@@ -36,26 +36,6 @@ export default function Kits() {
 
   return (
     <div className="kits-layout">
-      
-      {/* BARRA LATERAL (SIDEBAR) */}
-      <aside className="sidebar-profile">
-        <div className="profile-header">
-          <div className="avatar-placeholder"></div>
-          <div>
-            <h3>Imperial Member</h3>
-            <p>Cliente Ouro</p>
-          </div>
-        </div>
-        <nav className="sidebar-nav">
-          <Link to="/perfil" className="nav-item">Minha Conta</Link>
-          <button className="nav-item">Pedidos</button>
-          <button className="nav-item">Favoritos</button>
-          <button className="nav-item">Endereços</button>
-          <button className="nav-item sair-btn" onClick={() => navigate('/')}>Sair</button>
-        </nav>
-      </aside>
-
-      {/* CONTEÚDO PRINCIPAL */}
       <main className="kits-main-content">
         <div className="kits-topbar">
           <button className="btn-back" onClick={() => navigate('/catalogo')}>
