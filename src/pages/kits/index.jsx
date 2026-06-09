@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useProdutos } from '../../hooks/useProdutos';
+import tabuaImperialImg from '../../assets/tabuaImperial.jpg';
+import tabuafriosImg from '../../assets/tabuafrios.jpg';
+import kitPizzaGourmetImg from '../../assets/KitPizzaGourmet.jpg';
 import './Kits.css';
 
 export default function Kits() {
@@ -15,7 +18,7 @@ export default function Kits() {
       nome: 'Tábua Imperial Grande',
       descricao: 'A seleção definitiva para recepções. Serve até 10 pessoas com o melhor da charcutaria mundial e antepastos premium.',
       preco: 549.00,
-      imagem: '/assets/tabua-grande.png', // Ajuste para o caminho real da sua imagem
+      imagem: tabuaImperialImg,
       tag: 'Mais Vendido'
     },
     {
@@ -23,14 +26,14 @@ export default function Kits() {
       tipo: 'normal',
       nome: 'Kit Degustação de Frios',
       preco: 389.00,
-      imagem: '/assets/kit-caixa.png'
+      imagem: tabuafriosImg
     },
     {
       id: 3,
       tipo: 'normal',
       nome: 'Kit Pizza Gourmet',
       preco: 195.00,
-      imagem: '/assets/kit-pizza.png'
+      imagem: kitPizzaGourmetImg
     }
   ]);
 
