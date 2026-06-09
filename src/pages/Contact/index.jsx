@@ -103,7 +103,6 @@ export default function Contact() {
          
           <a href="/contato" className="active">CONTATO</a>
         </nav>
-        <button className="btn-conta">MINHA CONTA</button>
       </header>
 
       <main className="contact-main">
