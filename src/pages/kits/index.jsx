@@ -89,14 +89,17 @@ export default function Kits() {
                   <span className="price">R$ {kit.preco.toFixed(2).replace('.', ',')}</span>
                   <button
                     className="btn-primary btn-add"
-                    onClick={() => adicionarProduto({
-                      nome: kit.nome,
-                      descricao: kit.descricao,
-                      preco: kit.preco,
-                      imagem: kit.imagem,
-                      tag: kit.tag,
-                      tipo: kit.tipo
-                    })}
+                    onClick={() => {
+                      adicionarProduto({
+                        nome: kit.nome,
+                        descricao: kit.descricao,
+                        preco: kit.preco,
+                        imagem: kit.imagem,
+                        tag: kit.tag,
+                        tipo: kit.tipo
+                      });
+                      alert('produto adicionado!');
+                    }}
                   >
                     Adicionar ao Carrinho
                   </button>

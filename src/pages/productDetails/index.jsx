@@ -12,6 +12,7 @@ export function ProductCard({ id, nome, origem, preco, imagem, tag, description 
   const handleAdicionar = (e) => {
     e.preventDefault();
     adicionarProduto({ nome, origem, preco, imagem, tag, description });
+    alert('produto adicionado!');
   };
 
   return (
@@ -40,6 +41,7 @@ export function ProductCard({ id, nome, origem, preco, imagem, tag, description 
 
 export default function ProductDetailsPage() {
   const { id } = useParams();
+  const { produtos: produtosSalvos } = useProdutos();
 
   const produtos = [
     { id: 1, nome: 'Gorgonzola Dolce', origem: 'ORIGEM: ITÁLIA', preco: 145.90, imagem: gorgonzolaImg, tag: 'Premium', description: '' },
@@ -48,7 +50,12 @@ export default function ProductDetailsPage() {
     { id: 4, nome: 'Queijo Brie Double Cream', origem: 'TEXTURA AVELUDADA', preco: 112.00, imagem: brieImg, tag: null, description: '' }
   ];
 
-  const produto = produtos.find(p => String(p.id) === String(id));
+  const todosProdutos = [
+    ...produtos,
+    ...produtosSalvos.filter((salvo) => !produtos.some((produto) => String(produto.id) === String(salvo.id)))
+  ];
+
+  const produto = todosProdutos.find((p) => String(p.id) === String(id));
 
   if (!produto) return <div className="product-details">Produto não encontrado</div>;
 

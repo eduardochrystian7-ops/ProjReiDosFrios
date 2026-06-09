@@ -26,6 +26,7 @@ export default function Profile() {
 
   const navigate = useNavigate();
 
+
   // Simulando o histórico de pedidos visível no design
   const [historicoPedidos] = useState([
     {
