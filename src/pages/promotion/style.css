@@ -111,6 +111,14 @@
   gap: 2rem;
 }
 
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: #aaaaaa;
+  font-size: 1.1rem;
+}
+
 /* Cards de Produto */
 .promo-card {
   background: #1a1a1a; /* Fundo do card igual ao info-card */

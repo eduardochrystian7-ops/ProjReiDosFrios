@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { useProdutos } from '../../hooks/useProdutos';
 import tabuaImperialImg from '../../assets/tabuaImperial.jpg';
 import tabuafriosImg from '../../assets/tabuafrios.jpg';
@@ -7,7 +6,7 @@ import kitPizzaGourmetImg from '../../assets/KitPizzaGourmet.jpg';
 import './Kits.css';
 
 export default function Kits() {
-  const navigate = useNavigate();
+  
   const { adicionarProduto } = useProdutos();
 
   // Dados simulados para o layout (prontos para o hook do CRUD depois)
@@ -46,10 +45,6 @@ export default function Kits() {
             <span className="hero-subtitle">IMPERIAL GASTRONOMY</span>
             <h1 className="hero-title">Kits Gastronômicos</h1>
             <p>Curadoria exclusiva de charcutaria, queijos premium e acompanhamentos artesanais, montados para proporcionar uma experiência sensorial única.</p>
-            <div className="hero-buttons">
-              <button className="btn-primary">EXPLORAR SELEÇÃO</button>
-              <button className="btn-secondary">PERSONALIZAR KIT</button>
-            </div>
           </div>
         </section>
 
@@ -91,6 +86,22 @@ export default function Kits() {
                   <div className="card-overlay">
                     <h3>{kit.nome}</h3>
                     <span className="price-small">R$ {kit.preco.toFixed(2).replace('.', ',')}</span>
+                    <button
+                      className="btn-primary btn-add"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        adicionarProduto({
+                          nome: kit.nome,
+                          descricao: kit.descricao || kit.nome,
+                          preco: kit.preco,
+                          imagem: kit.imagem,
+                          tipo: kit.tipo
+                        });
+                        alert('produto adicionado!');
+                      }}
+                    >
+                      Adicionar ao Carrinho
+                    </button>
                   </div>
                 </div>
               ))}
@@ -110,16 +121,6 @@ export default function Kits() {
               <li>Consultoria em harmonização de condimentos</li>
               <li>Entrega climatizada em embalagens premium</li>
             </ul>
-            
-            <button className="btn-primary">INICIAR PERSONALIZAÇÃO</button>
-          </div>
-          
-          <div className="exclusivity-image">
-            {/* Imagem do Chef */}
-            <div className="badge-options">
-              <strong>150+</strong>
-              <span>Opções de Seleção</span>
-            </div>
           </div>
         </section>
 

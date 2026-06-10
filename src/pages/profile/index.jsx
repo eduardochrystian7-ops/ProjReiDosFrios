@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './style.css';
 import CartManager from '../../components/CartManager';
+import entregadorImg from '../../assets/entregador.png';
 
 function LogoutButton() {
   const navigate = useNavigate();
@@ -16,14 +17,75 @@ function LogoutButton() {
 }
 
 export default function Profile() {
-  const navigate = useNavigate();
   const location = useLocation();
   
-  // Controle de abas: 'conta', 'pedidos', 'favoritos', 'enderecos'
-  const [abaAtiva, setAbaAtiva] = useState('conta');
+  // CORREÇÃO AQUI: Lê a URL na inicialização do estado.
+  // Se tiver um 'tab' na URL, usa ele. Se não, o padrão é 'conta'.
+  const [abaAtiva, setAbaAtiva] = useState(() => {
+    const params = new URLSearchParams(location.search);
+    return params.get('tab') || 'conta';
+  });
   
   // Controle do formulário de novo endereço
   const [mostrarFormEndereco, setMostrarFormEndereco] = useState(false);
+  const [editingEnderecoId, setEditingEnderecoId] = useState(null);
+  const [cepError, setCepError] = useState('');
+  const [enderecoForm, setEnderecoForm] = useState({
+    titulo: '',
+    cep: '',
+    cidade: '',
+    rua: '',
+    complemento: '',
+    bairro: ''
+  });
+
+  const lookupCep = async (cepValue) => {
+    const cleanCep = cepValue.replace(/\D/g, '');
+    if (cleanCep.length !== 8) {
+      setCepError('CEP deve ter 8 dígitos.');
+      return;
+    }
+
+    try {
+      const response = await fetch(`https://viacep.com.br/ws/${cleanCep}/json/`);
+      const data = await response.json();
+
+      if (data.erro) {
+        setCepError('CEP não encontrado.');
+        return;
+      }
+
+      setEnderecoForm((prev) => ({
+        ...prev,
+        rua: data.logradouro || prev.rua,
+        bairro: data.bairro || prev.bairro,
+        cidade: data.localidade && data.uf ? `${data.localidade} - ${data.uf}` : prev.cidade,
+        complemento: data.complemento || prev.complemento,
+        cep: cleanCep
+      }));
+      setCepError('');
+    } catch {
+      setCepError('Falha ao buscar CEP. Tente novamente.');
+    }
+  };
+
+  const handleCepChange = (event) => {
+    const rawValue = event.target.value;
+    const onlyDigits = rawValue.replace(/\D/g, '');
+    if (onlyDigits.length <= 8) {
+      setEnderecoForm((prev) => ({ ...prev, cep: onlyDigits }));
+    }
+    if (onlyDigits.length === 8) {
+      lookupCep(onlyDigits);
+    }
+  };
+
+  const handleCepBlur = () => {
+    const cleanCep = enderecoForm.cep.replace(/\D/g, '');
+    if (cleanCep.length === 8) {
+      lookupCep(cleanCep);
+    }
+  };
 
   // --- MOCK DE DADOS ---
   const [usuario] = useState({
@@ -33,22 +95,7 @@ export default function Profile() {
     proximoNivel: 'Imperial Diamond'
   });
 
-  const [historicoPedidos] = useState([
-    {
-      id: 1,
-      titulo: 'Seleção Especial de Presuntos Ibéricos & Vinhos Nobres',
-      data: '15 de Março de 2026',
-      status: 'Entregue',
-      imagem: '/assets/pedido-ibericos.png'
-    },
-    {
-      id: 2,
-      titulo: 'Tábua Imperial Grande & Queijos Maturados',
-      data: '28 de Fevereiro de 2026',
-      status: 'Entregue',
-      imagem: '/assets/tabua-grande.png'
-    }
-  ]);
+  const [historicoPedidos] = useState([]);
 
   const [detalhesPedidos] = useState([
     {
@@ -63,24 +110,9 @@ export default function Profile() {
     }
   ]);
 
-  const [favoritos] = useState([
-    {
-      id: 1,
-      titulo: 'Caviar Beluga Iraniano 50g',
-      preco: 'R$ 2.800,00',
-      descricao: 'Ovas selecionadas com textura amanteigada inconfundível. Uma verdadeira joia gastronômica.',
-      imagem: '/assets/caviar.png'
-    },
-    {
-      id: 2,
-      titulo: 'Vinho Tinto Château Margaux 2015',
-      preco: 'R$ 8.950,00',
-      descricao: 'Encorpado, com notas de trufas negras e tabaco. Safra excepcional para guarda.',
-      imagem: '/assets/vinho.png'
-    }
-  ]);
+  const [favoritos] = useState([]);
 
-  const [enderecos] = useState([
+  const [enderecos, setEnderecos] = useState([
     {
       id: 1,
       titulo: 'Residência Principal',
@@ -88,6 +120,7 @@ export default function Profile() {
       bairro: 'Boa Viagem',
       cidade: 'Recife - PE',
       cep: '51021-000',
+      complemento: 'Apt 1502',
       principal: true
     },
     {
@@ -97,15 +130,68 @@ export default function Profile() {
       bairro: 'Zona Rural',
       cidade: 'Gravatá - PE',
       cep: '55640-000',
+      complemento: '',
       principal: false
     }
   ]);
 
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const tab = params.get('tab');
-    if (tab) setAbaAtiva(tab);
-  }, [location.search]);
+  // CORREÇÃO AQUI: O useEffect problemático foi removido por completo!
+
+  const resetEnderecoForm = () => {
+    setEditingEnderecoId(null);
+    setEnderecoForm({
+      titulo: '',
+      cep: '',
+      cidade: '',
+      rua: '',
+      complemento: '',
+      bairro: ''
+    });
+  };
+
+  const handleEditarEndereco = (endereco) => {
+    setEditingEnderecoId(endereco.id);
+    setEnderecoForm({
+      titulo: endereco.titulo,
+      cep: endereco.cep,
+      cidade: endereco.cidade,
+      rua: endereco.rua,
+      complemento: endereco.complemento || '',
+      bairro: endereco.bairro
+    });
+    setMostrarFormEndereco(true);
+  };
+
+  const handleSalvarEndereco = () => {
+    const novoEndereco = {
+      id: editingEnderecoId || Date.now(),
+      titulo: enderecoForm.titulo,
+      cep: enderecoForm.cep,
+      cidade: enderecoForm.cidade,
+      rua: enderecoForm.rua,
+      complemento: enderecoForm.complemento,
+      bairro: enderecoForm.bairro,
+      principal: editingEnderecoId ? enderecos.find((end) => end.id === editingEnderecoId)?.principal : false
+    };
+
+    if (editingEnderecoId) {
+      setEnderecos((prev) => prev.map((end) =>
+        end.id === editingEnderecoId ? { ...end, ...novoEndereco } : end
+      ));
+    } else {
+      setEnderecos((prev) => [...prev, novoEndereco]);
+    }
+
+    resetEnderecoForm();
+    setMostrarFormEndereco(false);
+  };
+
+  const handleTogglePrincipal = (id) => {
+    setEnderecos((prev) => prev.map((end) => ({
+      ...end,
+      principal: end.id === id
+    })));
+  };
 
   return (
     <div className="profile-layout">
@@ -183,20 +269,24 @@ export default function Profile() {
             <section className="transactions-section">
               <h3 className="section-title">Histórico de Transações</h3>
               <div className="transactions-list">
-                {historicoPedidos.map((pedido) => (
-                  <div key={pedido.id} className="transaction-item">
-                    <div className="transaction-image-container">
-                      <img src={pedido.imagem} alt={pedido.titulo} className="transaction-image" />
+                {historicoPedidos.length === 0 ? (
+                  <div className="empty-state">Nenhum histórico de transações disponível no momento.</div>
+                ) : (
+                  historicoPedidos.map((pedido) => (
+                    <div key={pedido.id} className="transaction-item">
+                      <div className="transaction-image-container">
+                        <img src={pedido.imagem} alt={pedido.titulo} className="transaction-image" />
+                      </div>
+                      <div className="transaction-details">
+                        <h4>{pedido.titulo}</h4>
+                        <p>Status: <span className="status-badge">{pedido.status}</span> em {pedido.data}</p>
+                      </div>
+                      <button className="btn-secondary btn-ver-detalhes" onClick={() => setAbaAtiva('pedidos')}>
+                        Ver Detalhes
+                      </button>
                     </div>
-                    <div className="transaction-details">
-                      <h4>{pedido.titulo}</h4>
-                      <p>Status: <span className="status-badge">{pedido.status}</span> em {pedido.data}</p>
-                    </div>
-                    <button className="btn-secondary btn-ver-detalhes" onClick={() => setAbaAtiva('pedidos')}>
-                      Ver Detalhes
-                    </button>
-                  </div>
-                ))}
+                  ))
+                )}
               </div>
             </section>
           </>
@@ -205,34 +295,21 @@ export default function Profile() {
         {/* ================= ABA: PEDIDOS ================= */}
         {abaAtiva === 'pedidos' && (
           <>
-            {/* Cart manager moved here */}
             <CartManager />
 
             <section className="product-manager-section">
-              <div className="product-manager-header">
-                <div>
-                  <h3 className="section-title" style={{ marginBottom: '5px' }}>Meus Pedidos</h3>
-                  <p className="section-description">Acompanhe o envio e confira os detalhes das suas aquisições.</p>
-                </div>
-              </div>
+              
 
               <div className="product-list">
                 {detalhesPedidos.map((pedido) => (
                   <div key={pedido.id} className="product-card-manage">
                     <div className="product-card-main">
-                      <div className="product-card-image placeholder">Sem Imagem</div>
+                      <img src={entregadorImg} alt="Entregador" className="product-card-image" />
                       <div className="product-card-details">
-                        <span className="profile-subtitle" style={{ fontSize: '0.7rem', marginBottom: '4px' }}>
-                          {pedido.codigo} — {pedido.data}
-                        </span>
-                        <h4>{pedido.titulo}</h4>
-                        <p>{pedido.descricao}</p>
-                        <span className="product-card-price">{pedido.preco}</span>
                       </div>
                     </div>
                     <div className="product-actions">
-                      <button className="btn-ver-detalhes" style={{ borderColor: '#C5A059', color: '#fff' }}>Rastrear Item</button>
-                      <button className="btn-ver-detalhes">Nota Fiscal</button>
+                      
                     </div>
                   </div>
                 ))}
@@ -286,7 +363,10 @@ export default function Profile() {
               </div>
               <button 
                 className="btn-ver-detalhes btn-toggle-form" 
-                onClick={() => setMostrarFormEndereco(!mostrarFormEndereco)}
+                onClick={() => {
+                  resetEnderecoForm();
+                  setMostrarFormEndereco((prev) => !prev);
+                }}
               >
                 {mostrarFormEndereco ? 'Cancelar' : '+ Adicionar Novo'}
               </button>
@@ -298,27 +378,56 @@ export default function Profile() {
                 <div className="product-form-grid">
                   <div className="form-field form-field-full">
                     <label>Título do Endereço (ex: Trabalho, Casa de Praia)</label>
-                    <input type="text" placeholder="Nomeie este endereço" />
+                    <input
+                      type="text"
+                      placeholder="Nomeie este endereço"
+                      value={enderecoForm.titulo}
+                      onChange={(e) => setEnderecoForm((prev) => ({ ...prev, titulo: e.target.value }))}
+                    />
                   </div>
                   <div className="form-field">
                     <label>CEP</label>
-                    <input type="text" placeholder="00000-000" />
+                    <input
+                      type="text"
+                      placeholder="00000000"
+                      value={enderecoForm.cep}
+                      onChange={handleCepChange}
+                      onBlur={handleCepBlur}
+                    />
+                    {cepError && <span className="input-error">{cepError}</span>}
                   </div>
                   <div className="form-field">
                     <label>Cidade / Estado</label>
-                    <input type="text" placeholder="Ex: Recife - PE" />
+                    <input
+                      type="text"
+                      placeholder="Ex: Recife - PE"
+                      value={enderecoForm.cidade}
+                      onChange={(e) => setEnderecoForm((prev) => ({ ...prev, cidade: e.target.value }))}
+                    />
                   </div>
                   <div className="form-field form-field-full">
                     <label>Logradouro e Número</label>
-                    <input type="text" placeholder="Rua, Avenida, Número..." />
+                    <input
+                      type="text"
+                      placeholder="Rua, Avenida, Número..."
+                      value={enderecoForm.rua}
+                      onChange={(e) => setEnderecoForm((prev) => ({ ...prev, rua: e.target.value }))}
+                    />
                   </div>
                   <div className="form-field form-field-full">
                     <label>Complemento e Bairro</label>
-                    <input type="text" placeholder="Apt, Bloco, Condomínio, Bairro" />
+                    <input
+                      type="text"
+                      placeholder="Apt, Bloco, Condomínio, Bairro"
+                      value={enderecoForm.complemento}
+                      onChange={(e) => setEnderecoForm((prev) => ({ ...prev, complemento: e.target.value }))}
+                    />
                   </div>
                 </div>
                 <div className="product-form-actions">
-                  <button className="btn-resgatar" onClick={() => setMostrarFormEndereco(false)}>Salvar Endereço</button>
+                  <button className="btn-resgatar" onClick={handleSalvarEndereco}>
+                    {editingEnderecoId ? 'Atualizar Endereço' : 'Salvar Endereço'}
+                  </button>
                 </div>
               </div>
             )}
@@ -338,8 +447,14 @@ export default function Profile() {
                     </div>
                   </div>
                   <div className="product-actions">
-                    <button className="btn-ver-detalhes" style={{ borderColor: '#333', color: '#fff' }}>Editar</button>
-                    {!end.principal && <button className="btn-ver-detalhes">Tornar Principal</button>}
+                    <button className="btn-ver-detalhes" style={{ borderColor: '#333', color: '#fff' }} onClick={() => handleEditarEndereco(end)}>
+                      Editar
+                    </button>
+                    {!end.principal && (
+                      <button className="btn-ver-detalhes" onClick={() => handleTogglePrincipal(end.id)}>
+                        Tornar Principal
+                      </button>
+                    )}
                   </div>
                 </div>
               ))}

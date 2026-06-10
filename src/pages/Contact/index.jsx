@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useProdutos } from '../../hooks/useProdutos';
 import './style.css';
 
 export default function Contact() {
@@ -9,70 +8,8 @@ export default function Contact() {
     assunto: 'Dúvida Geral',
     mensagem: ''
   });
+  
   const [enviado, setEnviado] = useState(false);
-  const { produtos, adicionarProduto, editarProduto, excluirProduto } = useProdutos();
-  const [selectedProductId, setSelectedProductId] = useState(null);
-  const [showNewProductForm, setShowNewProductForm] = useState(false);
-  const [produtoForm, setProdutoForm] = useState({
-    nome: '',
-    origem: '',
-    preco: '',
-    descricao: '',
-    imagem: '',
-    tag: ''
-  });
-
-  const resetProductForm = () => {
-    setSelectedProductId(null);
-    setProdutoForm({ nome: '', origem: '', preco: '', descricao: '', imagem: '', tag: '' });
-  };
-
-  const startEditProduct = (produto) => {
-    setShowNewProductForm(true);
-    setSelectedProductId(produto.id);
-    setProdutoForm({
-      nome: produto.nome || '',
-      origem: produto.origem || '',
-      preco: produto.preco ?? '',
-      descricao: produto.descricao || produto.description || '',
-      imagem: produto.imagem || '',
-      tag: produto.tag || ''
-    });
-  };
-
-  const handleProductFormChange = (e) => {
-    const { name, value } = e.target;
-    setProdutoForm((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleProductFormSubmit = (e) => {
-    e.preventDefault();
-    const produtoDados = {
-      nome: produtoForm.nome,
-      origem: produtoForm.origem,
-      preco: Number(produtoForm.preco) || 0,
-      imagem: produtoForm.imagem,
-      tag: produtoForm.tag,
-      description: produtoForm.descricao
-    };
-
-    if (selectedProductId) {
-      editarProduto(selectedProductId, produtoDados);
-    } else {
-      adicionarProduto(produtoDados);
-    }
-
-    resetProductForm();
-    setShowNewProductForm(false);
-  };
-
-  const handleProductDelete = (id) => {
-    excluirProduto(id);
-    if (selectedProductId === id) {
-      resetProductForm();
-      setShowNewProductForm(false);
-    }
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
