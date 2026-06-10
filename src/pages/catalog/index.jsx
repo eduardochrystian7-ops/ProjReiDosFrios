@@ -74,12 +74,6 @@ export default function Catalog() {
           <h3>Seleção Imperial de Parmesão</h3>
           <p>Maturado por 24 meses, textura granulosa e sabor persistente. Apenas hoje com 30% de desconto.</p>
         </div>
-        <div className="promo-timer">
-          {/* Implementação visual estática do timer */}
-          <div className="timer-box"><span>04</span><small>HORAS</small></div>
-          <div className="timer-box"><span>22</span><small>MINUTOS</small></div>
-          <div className="timer-box"><span>15</span><small>SEGUNDOS</small></div>
-        </div>
       </section>
 
       {/* 4. GRID DE PRODUTOS */}

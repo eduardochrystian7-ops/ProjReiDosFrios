@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useProdutos } from '../../hooks/useProdutos';
 import tabuaImperialImg from '../../assets/tabuaImperial.jpg';
 import tabuafriosImg from '../../assets/tabuafrios.jpg';
@@ -7,7 +8,17 @@ import './Kits.css';
 
 export default function Kits() {
   
-  const { adicionarProduto } = useProdutos();
+  const { adicionarProduto, toggleFavorito, isFavorito } = useProdutos();
+  const navigate = useNavigate();
+
+  const handleFavoritar = (e, produto) => {
+    e.stopPropagation();
+    const produtoJaFavorito = isFavorito(produto.id);
+    toggleFavorito(produto);
+    if (!produtoJaFavorito) {
+      navigate('/perfil?tab=favoritos');
+    }
+  };
 
   // Dados simulados para o layout (prontos para o hook do CRUD depois)
   const [kitsEmDestaque] = useState([
@@ -24,13 +35,14 @@ export default function Kits() {
       id: 2,
       tipo: 'normal',
       nome: 'Kit Degustação de Frios',
+      descricao: 'Uma seleção cuidadosamente curada de queijos e charcutaria para uma experiência de degustação completa.',
       preco: 389.00,
       imagem: tabuafriosImg
     },
     {
       id: 3,
       tipo: 'normal',
-      nome: 'Kit Pizza Gourmet',
+      nome: 'Kit Ingredientes Pizza Gourmet',
       preco: 195.00,
       imagem: kitPizzaGourmetImg
     }
@@ -54,6 +66,13 @@ export default function Kits() {
             {/* Renderiza o item grande à esquerda */}
             {kitsEmDestaque.filter(k => k.tipo === 'destaque').map(kit => (
               <div key={kit.id} className="kit-card card-large" style={{ backgroundImage: `url(${kit.imagem})` }}>
+                <button
+                  type="button"
+                  className={`btn-favorite ${isFavorito(kit.id) ? 'favorited' : ''}`}
+                  onClick={(e) => handleFavoritar(e, kit)}
+                >
+                  {isFavorito(kit.id) ? '♥' : '♡'}
+                </button>
                 <div className="card-overlay">
                   {kit.tag && <span className="badge-tag">⭐ {kit.tag}</span>}
                   <h2>{kit.nome}</h2>
@@ -73,7 +92,7 @@ export default function Kits() {
                       alert('produto adicionado!');
                     }}
                   >
-                    Adicionar ao Carrinho
+                    Adicionar
                   </button>
                 </div>
               </div>
@@ -83,6 +102,13 @@ export default function Kits() {
             <div className="small-cards-column">
               {kitsEmDestaque.filter(k => k.tipo === 'normal').map(kit => (
                 <div key={kit.id} className="kit-card card-small" style={{ backgroundImage: `url(${kit.imagem})` }}>
+                  <button
+                    type="button"
+                    className={`btn-favorite ${isFavorito(kit.id) ? 'favorited' : ''}`}
+                    onClick={(e) => handleFavoritar(e, kit)}
+                  >
+                    {isFavorito(kit.id) ? '♥' : '♡'}
+                  </button>
                   <div className="card-overlay">
                     <h3>{kit.nome}</h3>
                     <span className="price-small">R$ {kit.preco.toFixed(2).replace('.', ',')}</span>
@@ -100,7 +126,7 @@ export default function Kits() {
                         alert('produto adicionado!');
                       }}
                     >
-                      Adicionar ao Carrinho
+                      Adicionar
                     </button>
                   </div>
                 </div>

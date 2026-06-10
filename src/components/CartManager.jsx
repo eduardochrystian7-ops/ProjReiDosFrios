@@ -63,7 +63,7 @@ export default function CartManager() {
     <section className="product-manager-section">
       <div className="product-manager-header">
         <div>
-          <h3 className="section-title">Gerenciar Itens do Carrinho</h3>
+          <h3 className="section-title">Gerenciador de Itens</h3>
           <p className="section-description">Edite, exclua ou adicione itens do carrinho diretamente na sua conta.</p>
         </div>
         <button

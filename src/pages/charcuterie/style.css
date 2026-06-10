@@ -318,6 +318,37 @@ body {
   background-color: rgba(197, 160, 89, 0.1);
 }
 
+.btn-favorite {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  font-size: 1.1rem;
+  color: #333;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.btn-favorite:hover {
+  transform: scale(1.05);
+  background: var(--gold);
+  color: #fff;
+}
+
+.btn-favorite.favorited {
+  background: var(--gold);
+  color: #fff;
+}
+
 /* CARD ESPECIAL: MONTE SUA TÁBUA */
 .special-action-card {
   background-color: var(--bg-card);

@@ -1,10 +1,24 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useProdutos } from '../../hooks/useProdutos';
 import './style.css';
+import presuntoibericoImg from '../../assets/presuntoiberico.jpg';
+import dirParmaImg from '../../assets/dirParma.jpg';
+import salameJavaliImg from '../../assets/salameJavali.jpg';
+import ArrotolataImg from '../../assets/Arrotolata.jpg';
+import chorizoibericoImg from '../../assets/chorizoiberico.jpg';
 
 export default function Charcutaria() {
-  const { adicionarProduto } = useProdutos();
+  const { adicionarProduto, toggleFavorito, isFavorito } = useProdutos();
+  const navigate = useNavigate();
+
+  const handleFavoritar = (produto) => {
+    const produtoJaFavorito = isFavorito(produto.id);
+    toggleFavorito(produto);
+    if (!produtoJaFavorito) {
+      navigate('/perfil?tab=favoritos');
+    }
+  };
 
   const [filtroOrigem, setFiltroOrigem] = useState({});
 
@@ -18,9 +32,9 @@ export default function Charcutaria() {
       descricao: 'A máxima expressão da charcutaria espanhola. Notas intensas de...',
       preco: '189,90',
       unidade: '/100g',
-      imagem: '/assets/presunto-iberico.png',
+      imagem: presuntoibericoImg,
       premium: true,
-      cardBg: '#A31C1C'
+      cardBg: '#ffffff'
     },
     {
       id: 2,
@@ -30,7 +44,7 @@ export default function Charcutaria() {
       descricao: 'Original da região de Emilia-Romagna. Sabor suave e...',
       preco: '84,00',
       unidade: '/100g',
-      imagem: '/assets/prosciutto.png',
+      imagem: dirParmaImg,
       premium: false,
       cardBg: '#FFFFFF'
     },
@@ -42,9 +56,9 @@ export default function Charcutaria() {
       descricao: 'Charcutaria artesanal serrana. Intensidade rústica com toque de...',
       preco: '42,90',
       unidade: '/100g',
-      imagem: '/assets/salame-javali.png',
+      imagem: salameJavaliImg,
       premium: false,
-      cardBg: '#1A2F2C'
+      cardBg: '#ffffff'
     },
     {
       id: 4,
@@ -54,9 +68,9 @@ export default function Charcutaria() {
       descricao: 'Barriga de porco curada com ervas finas e especiarias. Essencial para...',
       preco: '38,50',
       unidade: '/100g',
-      imagem: '/assets/pancetta.png',
+      imagem: ArrotolataImg,
       premium: false,
-      cardBg: '#222222'
+      cardBg: '#ffffff'
     },
     {
       id: 5,
@@ -66,9 +80,9 @@ export default function Charcutaria() {
       descricao: 'Temperado com o lendário Pimentón de la Vera...',
       preco: '56,00',
       unidade: '/100g',
-      imagem: '/assets/chorizo.png',
+      imagem: chorizoibericoImg,
       premium: false,
-      cardBg: '#8A5A44'
+      cardBg: '#ffffff'
     }
   ]);
 
@@ -163,6 +177,13 @@ export default function Charcutaria() {
             <div key={produto.id} className="product-card">
               <div className="product-image-container" style={{ backgroundColor: produto.cardBg }}>
                 {produto.premium && <span className="premium-badge">★ PREMIUM</span>}
+                <button
+                  type="button"
+                  className={`btn-favorite ${isFavorito(produto.id) ? 'favorited' : ''}`}
+                  onClick={() => handleFavoritar(produto)}
+                >
+                  {isFavorito(produto.id) ? '♥' : '♡'}
+                </button>
                 {/* Fallback caso não tenha a imagem local */}
                 <div className="img-placeholder" style={{ backgroundImage: `url(${produto.imagem})` }}></div>
               </div>

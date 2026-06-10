@@ -65,7 +65,7 @@
   color: #ccc;
 }
 
-.hero-buttons {
+.hero-buttons { /* Container para os botões do Hero */
   display: flex;
   gap: 15px;
   justify-content: center;
@@ -81,7 +81,7 @@
   cursor: pointer;
 }
 
-.btn-secondary {
+.btn-secondary { /* Botão para "Ver Kits" no Hero */
   background-color: transparent;
   color: #C5A059;
   border: 1px solid #C5A059;
@@ -125,7 +125,7 @@
   height: calc(50% - 10px);
 }
 
-.card-overlay {
+.card-overlay { /* Camada de texto e botão sobre a imagem do kit */
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -136,14 +136,42 @@
   align-items: flex-start;
 }
 
-.price {
+.btn-favorite {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.btn-favorite:hover {
+  transform: scale(1.05);
+  background: #C5A059;
+  color: #fff;
+}
+
+.btn-favorite.favorited {
+  background: #C5A059;
+  color: #fff;
+}
+
+.price { /* Preço para o card grande */
   font-size: 2rem;
   color: #C5A059;
   font-weight: bold;
   margin: 15px 0;
 }
 
-.price-small {
+.price-small { /* Preço para os cards pequenos */
   display: block;
   font-size: 1rem;
   color: #C5A059;
@@ -151,11 +179,18 @@
   margin: 10px 0 16px;
 }
 
-.card-overlay .btn-add {
+.card-overlay .btn-add { /* Botão de Adicionar ao Carrinho */
   align-self: flex-start;
-  padding: 10px 18px;
-  font-size: 0.9rem;
-  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  font-size: 0.75rem;
+  line-height: 1;
+  border-radius: 5px;
+  white-space: nowrap;
+  min-width: 0;
+  max-width: fit-content;
 }
 
 /* Seção de Exclusividade (Bottom) */
@@ -170,6 +205,15 @@
   max-width: 800px;
 }
 
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0 0;
+}
+
+.benefits-list li {
+  margin-bottom: 12px;
+}
 
 .exclusivity-image {
   display: none;

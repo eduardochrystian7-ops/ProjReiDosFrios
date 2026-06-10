@@ -11,10 +11,22 @@ export function useProdutos() {
     return [];
   });
 
+  const [favoritos, setFavoritos] = useState(() => {
+    const dadosFavoritos = localStorage.getItem('@ReiDosFrios:favoritos');
+    if (dadosFavoritos) {
+      return JSON.parse(dadosFavoritos);
+    }
+    return [];
+  });
+
   // Salva no localStorage sempre que o estado 'produtos' mudar
   useEffect(() => {
     localStorage.setItem('@ReiDosFrios:produtos', JSON.stringify(produtos));
   }, [produtos]);
+
+  useEffect(() => {
+    localStorage.setItem('@ReiDosFrios:favoritos', JSON.stringify(favoritos));
+  }, [favoritos]);
 
   // 2. CREATE: Adiciona um novo produto
   const adicionarProduto = (novoProduto) => {
@@ -41,11 +53,37 @@ export function useProdutos() {
     );
   };
 
+  const isFavorito = (id) => favoritos.some((produto) => String(produto.id) === String(id));
+
+  const adicionarFavorito = (produto) => {
+    if (isFavorito(produto.id)) return;
+    setFavoritos((estadoAnterior) => [...estadoAnterior, produto]);
+  };
+
+  const removerFavorito = (idParaRemover) => {
+    setFavoritos((estadoAnterior) =>
+      estadoAnterior.filter((produto) => String(produto.id) !== String(idParaRemover))
+    );
+  };
+
+  const toggleFavorito = (produto) => {
+    if (isFavorito(produto.id)) {
+      removerFavorito(produto.id);
+      return;
+    }
+    adicionarFavorito(produto);
+  };
+
   // O Hook exporta o estado e as funções para as telas usarem
   return {
     produtos,
     adicionarProduto,
     editarProduto,
-    excluirProduto
+    excluirProduto,
+    favoritos,
+    adicionarFavorito,
+    removerFavorito,
+    toggleFavorito,
+    isFavorito
   };
 }

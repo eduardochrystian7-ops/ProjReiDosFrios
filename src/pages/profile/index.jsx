@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useProdutos } from '../../hooks/useProdutos';
 import './style.css';
 import CartManager from '../../components/CartManager';
-import entregadorImg from '../../assets/entregador.png';
+import ReiEntregadorImg from '../../assets/ReiEntregador.jpeg';
 
 function LogoutButton() {
   const navigate = useNavigate();
@@ -18,14 +19,14 @@ function LogoutButton() {
 
 export default function Profile() {
   const location = useLocation();
-  
-  // CORREÇÃO AQUI: Lê a URL na inicialização do estado.
-  // Se tiver um 'tab' na URL, usa ele. Se não, o padrão é 'conta'.
-  const [abaAtiva, setAbaAtiva] = useState(() => {
-    const params = new URLSearchParams(location.search);
-    return params.get('tab') || 'conta';
-  });
-  
+  const navigate = useNavigate();
+
+  const abaAtiva = new URLSearchParams(location.search).get('tab') || 'conta';
+
+  const handleChangeTab = (tab) => {
+    navigate(`/perfil?tab=${tab}`);
+  };
+
   // Controle do formulário de novo endereço
   const [mostrarFormEndereco, setMostrarFormEndereco] = useState(false);
   const [editingEnderecoId, setEditingEnderecoId] = useState(null);
@@ -110,7 +111,7 @@ export default function Profile() {
     }
   ]);
 
-  const [favoritos] = useState([]);
+  const { favoritos, removerFavorito, adicionarProduto } = useProdutos();
 
   const [enderecos, setEnderecos] = useState([
     {
@@ -134,8 +135,6 @@ export default function Profile() {
       principal: false
     }
   ]);
-
-  // CORREÇÃO AQUI: O useEffect problemático foi removido por completo!
 
   const resetEnderecoForm = () => {
     setEditingEnderecoId(null);
@@ -208,25 +207,25 @@ export default function Profile() {
         <nav className="sidebar-nav">
           <button 
             className={`nav-item ${abaAtiva === 'conta' ? 'active' : ''}`}
-            onClick={() => setAbaAtiva('conta')}
+            onClick={() => handleChangeTab('conta')}
           >
             Minha Conta
           </button>
           <button 
             className={`nav-item ${abaAtiva === 'pedidos' ? 'active' : ''}`}
-            onClick={() => setAbaAtiva('pedidos')}
+            onClick={() => handleChangeTab('pedidos')}
           >
             Pedidos
           </button>
           <button 
             className={`nav-item ${abaAtiva === 'favoritos' ? 'active' : ''}`}
-            onClick={() => setAbaAtiva('favoritos')}
+            onClick={() => handleChangeTab('favoritos')}
           >
             Favoritos
           </button>
           <button 
             className={`nav-item ${abaAtiva === 'enderecos' ? 'active' : ''}`}
-            onClick={() => setAbaAtiva('enderecos')}
+            onClick={() => handleChangeTab('enderecos')}
           >
             Endereços
           </button>
@@ -281,7 +280,7 @@ export default function Profile() {
                         <h4>{pedido.titulo}</h4>
                         <p>Status: <span className="status-badge">{pedido.status}</span> em {pedido.data}</p>
                       </div>
-                      <button className="btn-secondary btn-ver-detalhes" onClick={() => setAbaAtiva('pedidos')}>
+                      <button className="btn-secondary btn-ver-detalhes" onClick={() => handleChangeTab('pedidos')}>
                         Ver Detalhes
                       </button>
                     </div>
@@ -304,7 +303,7 @@ export default function Profile() {
                 {detalhesPedidos.map((pedido) => (
                   <div key={pedido.id} className="product-card-manage">
                     <div className="product-card-main">
-                      <img src={entregadorImg} alt="Entregador" className="product-card-image" />
+                      <img src={ReiEntregadorImg} alt="Entregador" className="product-card-image" />
                       <div className="product-card-details">
                       </div>
                     </div>
@@ -335,16 +334,34 @@ export default function Profile() {
                 favoritos.map((item) => (
                   <div key={item.id} className="product-card-manage">
                     <div className="product-card-main">
-                      <div className="product-card-image placeholder">Img</div>
+                      {item.imagem ? (
+                        <img src={item.imagem} alt={item.nome} className="product-card-image" />
+                      ) : (
+                        <div className="product-card-image placeholder">Sem imagem</div>
+                      )}
                       <div className="product-card-details">
-                        <h4>{item.titulo}</h4>
-                        <p>{item.descricao}</p>
-                        <span className="product-card-price">{item.preco}</span>
+                        <h4>{item.nome}</h4>
+                        <p>{item.origem}</p>
+                        <p>{item.description}</p>
+                        <span className="product-card-price">R$ {Number(item.preco).toFixed(2).replace('.', ',')}</span>
                       </div>
                     </div>
                     <div className="product-actions">
-                      <button className="btn-resgatar" style={{ padding: '10px 20px', width: '100%' }}>Adicionar ao Carrinho</button>
-                      <button className="btn-ver-detalhes">Remover</button>
+                      <button
+                        type="button"
+                        className="btn-resgatar"
+                        style={{ padding: '10px 20px', width: '100%' }}
+                        onClick={() => adicionarProduto(item)}
+                      >
+                        Adicionar ao Carrinho
+                      </button>
+                      <button
+                        type="button"
+                        className="btn-ver-detalhes"
+                        onClick={() => removerFavorito(item.id)}
+                      >
+                        Remover
+                      </button>
                     </div>
                   </div>
                 ))
