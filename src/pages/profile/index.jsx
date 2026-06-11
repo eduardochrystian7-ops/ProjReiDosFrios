@@ -325,7 +325,7 @@ export default function Profile() {
                 <h3 className="section-title" style={{ marginBottom: '5px' }}>Minha Adega & Favoritos</h3>
                 <p className="section-description">Sua curadoria pessoal de itens desejados no empório Imperial.</p>
               </div>
-            </div>
+            </div> // funtion fav
 
             <div className="product-list">
               {favoritos.length === 0 ? (
