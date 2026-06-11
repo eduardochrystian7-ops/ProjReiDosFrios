@@ -22,7 +22,7 @@ export default function Charcutaria() {
 
   const [filtroOrigem, setFiltroOrigem] = useState({});
 
-  // Mock de dados baseado na imagem
+  // Mock de dados baseado na imagemmmmm
   const [produtos] = useState([
     {
       id: 1,
