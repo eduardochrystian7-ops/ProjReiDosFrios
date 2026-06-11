@@ -89,7 +89,7 @@ export default function Kits() {
                         tag: kit.tag,
                         tipo: kit.tipo
                       });
-                      alert('produto adicionado!');
+                      alert('produto adicionado!'); // Substitua por um toast ou modal mais elegante depois
                     }}
                   >
                     Adicionar
