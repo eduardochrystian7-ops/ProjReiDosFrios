@@ -57,6 +57,7 @@
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  min-width: 0;
 }
 
 /* Hero Section */
@@ -107,8 +108,17 @@
 
 .promo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
+  min-width: 0;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: #aaaaaa;
+  font-size: 1.1rem;
 }
 
 /* Cards de Produto */
@@ -119,6 +129,7 @@
   overflow: hidden;
   position: relative;
   transition: transform 0.3s ease, border-color 0.3s ease;
+  min-width: 0;
 }
 
 .promo-card:hover {
@@ -151,6 +162,8 @@
   width: 100%;
   height: 200px;
   object-fit: cover;
+  display: block;
+  min-width: 0;
 }
 
 .promo-card-image.placeholder {
@@ -160,6 +173,8 @@
   justify-content: center;
   color: #777777;
   font-size: 0.85rem;
+  min-height: 200px;
+  min-width: 0;
 }
 
 .promo-card-content {
