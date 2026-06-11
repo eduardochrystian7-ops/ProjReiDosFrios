@@ -1,0 +1,504 @@
+/* Layout Base Integrado com a Sidebar */
+.profile-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #121212;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Área de Conteúdo Principal */
+.profile-main-content {
+  flex: 1;
+  padding: 60px 80px;
+  max-width: 1000px;
+  overflow-y: auto;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.profile-header h3 {
+  color: #C5A059;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.profile-header p {
+  color: #C5A059;
+  font-size: 0.85rem;
+  margin: 0;
+  background: rgba(197,160,89,0.12);
+  padding: 6px 14px;
+  border-radius: 999px;
+  display: inline-block;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-profile {
+  width: 280px;
+  background-color: #111111;
+  border-right: 1px solid #1f1f1f;
+  padding: 45px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nav-item {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #f3f3f3;
+  text-align: left;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-item:hover {
+  background: rgba(197,160,89,0.1);
+  border-color: rgba(197,160,89,0.4);
+  color: #ffffff;
+}
+
+.nav-item.active {
+  background: rgba(197,160,89,0.18);
+  border-color: #C5A059;
+  color: #C5A059;
+}
+
+.sair-btn {
+  background: #1f1f1f;
+  border-color: #333333;
+  color: #ffffff;
+}
+
+.sair-btn:hover {
+  background: #C5A059;
+  border-color: #C5A059;
+  color: #000000;
+}
+
+/* Seção de Boas-Vindas */
+.profile-welcome-section {
+  margin-bottom: 40px;
+}
+
+.profile-subtitle {
+  color: #C5A059;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.profile-title {
+  font-size: 2.5rem;
+  font-family: 'Playfair Display', serif;
+  margin: 0 0 15px 0;
+  font-weight: 500;
+}
+
+.profile-description {
+  color: #aaaaaa;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 700px;
+}
+
+/* Painel / Card Club Imperial */
+.club-imperial-card {
+  background-color: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  padding: 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.club-tag {
+  color: #888888;
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.points-display {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.points-display h2 {
+  font-size: 3.5rem;
+  color: #ffffff;
+  margin: 0;
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+}
+
+.points-label {
+  color: #C5A059;
+  font-size: 0.9rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.next-tier-info {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #888888;
+}
+
+.next-tier-info strong {
+  color: #ffffff;
+}
+
+/* Área Direita do Card do Club (Ícone e Botão) */
+.club-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 25px;
+}
+
+/* Topbar para ações rápidas (ex.: botão voltar) */
+.profile-topbar {
+  padding: 0 0 18px 0;
+  display: flex;
+  align-items: center;
+}
+
+.btn-back {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-back:hover {
+  border-color: rgba(197,160,89,0.9);
+  color: #C5A059;
+}
+
+.back-icon {
+  font-size: 1.1rem;
+}
+
+.star-badge-icon {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #C5A059;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-star {
+  color: #C5A059;
+  font-size: 1.5rem;
+}
+
+.btn-resgatar {
+  background-color: #C5A059;
+  color: #000000;
+  border: none;
+  padding: 14px 28px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-resgatar:hover {
+  background-color: #d4b26a;
+}
+
+/* Histórico de Transações */
+.section-title {
+  font-size: 1.3rem;
+  color: #ffffff;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+.transactions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.transaction-item {
+  background-color: #161616;
+  border: 1px solid #222222;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  transition: border-color 0.2s ease;
+}
+
+.transaction-item:hover {
+  border-color: #333333;
+}
+
+.transaction-image-container {
+  width: 65px;
+  height: 65px;
+  background-color: #2a2a2a;
+  margin-right: 20px;
+  overflow: hidden;
+}
+
+.transaction-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.transaction-details {
+  flex: 1;
+}
+
+.transaction-details h4 {
+  font-size: 1.05rem;
+  margin: 0 0 8px 0;
+  font-weight: 500;
+}
+
+.transaction-details p {
+  font-size: 0.85rem;
+  color: #888888;
+  margin: 0;
+}
+
+.status-badge {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.btn-ver-detalhes {
+  background: transparent;
+  border: 1px solid #333333;
+  color: #aaaaaa;
+  padding: 10px 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-ver-detalhes:hover {
+  border-color: #C5A059;
+  color: #C5A059;
+}
+
+.product-manager-section {
+  margin-top: 50px;
+  padding: 30px;
+  background: #161616;
+  border: 1px solid #222222;
+  border-radius: 24px;
+}
+
+.product-manager-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 25px;
+}
+
+.section-description {
+  color: #bbbbbb;
+  max-width: 620px;
+  margin-top: 6px;
+}
+
+.product-form {
+  background: #121212;
+  border: 1px solid #222222;
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 30px;
+}
+
+.product-form-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-field-full {
+  grid-column: span 2;
+}
+
+.product-form label {
+  color: #bbbbbb;
+  font-size: 0.9rem;
+}
+
+.product-form input,
+.product-form textarea {
+  background: #0e0e0e;
+  border: 1px solid #2b2b2b;
+  color: #ffffff;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+}
+
+.product-form input:focus,
+.product-form textarea:focus {
+  outline: none;
+  border-color: #C5A059;
+}
+
+.product-form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.product-list {
+  display: grid;
+  gap: 18px;
+}
+
+.product-card-manage {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  background: #131313;
+  border: 1px solid #222222;
+  border-radius: 20px;
+  padding: 18px;
+  align-items: center;
+}
+
+.product-card-main {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  flex: 1;
+}
+
+.product-card-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 18px;
+  background: #1b1b1b;
+}
+
+.product-card-image.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777777;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.product-card-details h4 {
+  margin: 0 0 6px 0;
+  font-size: 1.05rem;
+}
+
+.product-card-details p {
+  margin: 4px 0;
+  color: #aaaaaa;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.product-card-price {
+  display: inline-block;
+  margin-top: 6px;
+  color: #C5A059;
+  font-weight: 700;
+}
+
+.product-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.empty-state {
+  padding: 30px;
+  color: #bbbbbb;
+  background: #111111;
+  border: 1px dashed #333333;
+  border-radius: 18px;
+  text-align: center;
+}
+
+.btn-toggle-form {
+  padding: 14px 22px;
+}
+
+/* Responsividade Básica */
+@media (max-width: 850px) {
+  .profile-layout {
+    flex-direction: column;
+  }
+  .sidebar-profile {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .profile-main-content {
+    padding: 40px 20px;
+  }
+  .club-imperial-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+  .club-actions {
+    align-items: flex-start;
+    width: 100%;
+  }
+  .btn-resgatar {
+    width: 100%;
+  }
+  .transaction-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .btn-ver-detalhes {
+    width: 100%;
+    text-align: center;
+  }
+}

@@ -1,5 +1,10 @@
 import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { ProductCard } from '../productDetails';
+import gorgonzolaImg from '../../assets/gorgonzola.jpg';
+import prosciuttoImg from '../../assets/prosciutto.jpg';
+import salameImg from '../../assets/salame.jpg';
+import brieImg from '../../assets/brie.png';
 import './Catalog.css';
 
 export default function Catalog() {
@@ -10,36 +15,40 @@ export default function Catalog() {
       nome: 'Gorgonzola Dolce',
       origem: 'ORIGEM: ITÁLIA',
       preco: 145.90,
-      imagem: '/assets/gorgonzola.png', // Lembre-se de colocar as imagens na pasta public/assets
-      tag: 'Premium'
+      imagem: gorgonzolaImg,
+      tag: 'Premium',
+      description: ''
     },
     {
       id: 2,
       nome: 'Prosciutto di Parma',
       origem: 'MATURADO 18 MESES',
       preco: 289.00,
-      imagem: '/assets/prosciutto.png',
-      tag: null
+      imagem: prosciuttoImg,
+      tag: null,
+      description: ''
     },
     {
       id: 3,
       nome: 'Salame Milano',
       origem: 'TEMPEROS NOBRES',
       preco: 98.50,
-      imagem: '/assets/salame.png',
-      tag: null
+      imagem: salameImg,
+      tag: null,
+      description: ''
     },
     {
       id: 4,
       nome: 'Queijo Brie Double Cream',
       origem: 'TEXTURA AVELUDADA',
       preco: 112.00,
-      imagem: '/assets/brie.png',
-      tag: null
+      imagem: brieImg,
+      tag: null,
+      description: ''
     }
   ]);
 
-  const [categoriaAtiva, setCategoriaAtiva] = useState('QUEIJOS');
+  const navigate = useNavigate();
 
   return (
     <main className="catalog-container">
@@ -47,26 +56,16 @@ export default function Catalog() {
       <header className="catalog-header">
         <h1 className="logo-text">Rei dos Frios</h1>
         <nav>
-          <a href="#produtos" className="active">PRODUTOS</a>
-          <a href="#promocoes">PROMOÇÕES</a>
-          <a href="#entregas">ENTREGAS</a>
-          <a href="#contato">CONTATO</a>
+          <Link to="/catalogo" className="active">PRODUTOS</Link>
+          <Link to="/kits">KITS</Link>
+          <Link to="/promocoes">PROMOÇÕES</Link>
+          <Link to="/charcutaria">CHARCUTARIA</Link>
+          <Link to="/contato">CONTATO</Link>
         </nav>
-        <button className="btn-conta">MINHA CONTA</button>
+        <button type="button" className="btn-conta" onClick={() => navigate('/perfil')}>MINHA CONTA</button>
       </header>
 
-      {/* 2. MENU DE CATEGORIAS */}
-      <section className="category-menu">
-        {['QUEIJOS', 'PRESUNTOS', 'SALAMES', 'KITS & TÁBUAS'].map((cat) => (
-          <button 
-            key={cat} 
-            className={`btn-category ${categoriaAtiva === cat ? 'active' : ''}`}
-            onClick={() => setCategoriaAtiva(cat)}
-          >
-            {cat}
-          </button>
-        ))}
-      </section>
+      {/* Menu de categorias removido conforme solicitado */}
 
       {/* 3. BANNER PROMOCIONAL */}
       <section className="promo-banner">
@@ -94,31 +93,9 @@ export default function Catalog() {
             preco={produto.preco}
             imagem={produto.imagem}
             tag={produto.tag}
+            description={produto.description}
           />
         ))}
-      </section>
-
-      {/* 5. SEÇÃO DE KITS (Base do design) */}
-      <section className="kits-section">
-        <div className="kits-text">
-          <h2 className="kits-title">Kits Gastronômicos</h2>
-          <p>Nossas tábuas são montadas por especialistas, combinando sabores que se complementam e criam uma experiência sensorial completa para seus convidados.</p>
-          
-          <div className="kits-buttons">
-            <div className="kit-option">
-              <h4>Tábua Degustação</h4>
-              <p>4 tipos de queijos + 2 frios</p>
-            </div>
-            <div className="kit-option">
-              <h4>Kit Noite de Vinhos</h4>
-              <p>Seleção curada para tintos</p>
-            </div>
-          </div>
-        </div>
-        <div className="kits-image">
-          {/* Imagem representativa da tábua de frios */}
-          <div className="image-placeholder">Imagem da Tábua</div> 
-        </div>
       </section>
     </main>
   );

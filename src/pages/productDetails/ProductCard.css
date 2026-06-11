@@ -83,20 +83,66 @@
 }
 
 /* Botão Dourado de Adicionar */
-.btn-add {
-  background-color: #C5A059;
-  color: #ffffff;
-  border: none;
-  padding: 14px;
-  font-size: 0.9rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  width: calc(100% - 40px);
-  margin: 0 20px 20px 20px; /* Alinhado com o padding lateral do texto */
+/* Regras de botão de adicionar removidas */
+
+/* Regras para a página de detalhes: padroniza o tamanho da imagem do produto */
+.details-card {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px;
 }
 
-.btn-add:hover {
-  background-color: #b08d4b; /* Dourado um pouco mais escuro no hover */
+.details-image-wrapper {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+}
+
+.details-image {
+  width: 100%;
+  height: 360px;
+  overflow: hidden;
+  background: #f8f8f8;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.details-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.details-description {
+  margin: 0;
+  width: 100%;
+  color: #ffffff;
+  line-height: 1.6;
+  padding: 0 16px 8px;
+}
+
+.details-info {
+  max-width: 360px;
+}
+
+@media (max-width: 900px) {
+  .details-card {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .details-info {
+    width: 100%;
+    max-width: 360px;
+    text-align: center;
+  }
+
+  .details-description {
+    text-align: center;
+  }
 }

@@ -1,0 +1,182 @@
+/* Layout Principal */
+.kits-layout {
+  min-height: 100vh;
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* Área de Conteúdo Principal */
+.kits-main-content {
+  padding: 0; /* O Hero encosta nas bordas */
+  overflow-y: auto;
+}
+
+/* Topbar dentro da área de conteúdo para botões utilitários */
+.kits-topbar {
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+}
+
+.btn-back {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-back:hover {
+  border-color: rgba(197,160,89,0.9);
+  color: #C5A059;
+}
+
+.back-icon {
+  font-size: 1.1rem;
+}
+
+/* Hero Banner */
+.kits-hero {
+  background-color: #222; /* Substitua por background-image no futuro */
+  padding: 80px 50px;
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+
+.hero-subtitle {
+  color: #C5A059;
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-family: serif;
+  margin: 10px 0;
+}
+
+.hero-content p {
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+  color: #ccc;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Botões Padronizados */
+.btn-primary {
+  background-color: #C5A059;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #C5A059;
+  border: 1px solid #C5A059;
+  padding: 12px 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Grid de Kits Assimétrico */
+.kits-grid-section {
+  padding: 50px;
+}
+
+.custom-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr; /* Coluna da esquerda maior */
+  gap: 20px;
+  height: 600px;
+}
+
+.small-cards-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.kit-card {
+  position: relative;
+  background-color: #2a2a2a;
+  background-size: cover;
+  background-position: center;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.card-large {
+  height: 100%;
+}
+
+.card-small {
+  height: calc(50% - 10px);
+}
+
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 30px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.9));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.price {
+  font-size: 2rem;
+  color: #C5A059;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+/* Seção de Exclusividade (Bottom) */
+.exclusivity-section {
+  display: flex;
+  padding: 50px;
+  background-color: #1a1a1a;
+  margin: 0 50px 50px 50px;
+  border-radius: 8px;
+  gap: 50px;
+}
+
+.exclusivity-text {
+  flex: 1;
+}
+
+.exclusivity-image {
+  flex: 1;
+  background-color: #333; /* Placeholder para a foto do Chef */
+  border-radius: 8px;
+  position: relative;
+  min-height: 300px;
+}
+
+.badge-options {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  background-color: #222;
+  border: 1px solid #C5A059;
+  padding: 15px 25px;
+  text-align: center;
+}
+
+.badge-options strong {
+  display: block;
+  color: #C5A059;
+  font-size: 1.8rem;
+}

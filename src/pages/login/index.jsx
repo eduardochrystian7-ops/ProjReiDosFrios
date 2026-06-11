@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import logoRei from '../../assets/logo_rei.jpeg';
 import './styles.css'; // Importando o CSS local da pasta
 
 export function Login() {
@@ -25,6 +26,7 @@ export function Login() {
       <div className="login-overlay">
         
         <header className="login-header">
+          <img src={logoRei} alt="Logo Rei dos Frios" className="login-logo" />
           <h1>REI DOS FRIOS</h1>
           <p>Gastronomia Imperial</p>
         </header>
@@ -34,7 +36,7 @@ export function Login() {
           <div className="input-group">
             <label htmlFor="email">Email</label>
             <div className="input-wrapper">
-              <span className="icon">✉️</span> {/* Ideal usar um SVG real de src/assets ou icons.svg */}
+              <span className="icon"></span> {/* Ideal usar um SVG real de src/assets ou icons.svg */}
               <input 
                 type="email" 
                 id="email"
@@ -49,7 +51,7 @@ export function Login() {
           <div className="input-group">
             <label htmlFor="senha">Senha</label>
             <div className="input-wrapper">
-              <span className="icon">🔒</span>
+              <span className="icon"></span>
               <input 
                 type="password" 
                 id="senha"
@@ -66,7 +68,7 @@ export function Login() {
           </div>
 
           <button type="submit" className="btn-primary">
-            Entrar no Reino <span>🛡️</span>
+            Entrar no Reino <span></span>
           </button>
 
           <div className="divider">
