@@ -1,0 +1,327 @@
+/* Container e Header (Seguindo o padrão do Contato) */
+.promocoes-container {
+  font-family: 'Inter', sans-serif;
+  color: #ffffff;
+  background-color: #121212; /* Fundo escuro padrão */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.promocoes-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: #0a0a0a; /* Header idêntico ao de contato */
+  border-bottom: 1px solid #222;
+  position: relative;
+}
+
+.promocoes-header .logo-text {
+  color: #C5A059; /* Dourado Oficial */
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  margin: 0;
+  position: absolute;
+  left: 50px;
+}
+
+.promocoes-header nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.promocoes-header nav a {
+  color: #888888;
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+}
+
+.promocoes-header nav a:hover,
+.promocoes-header nav a.active {
+  color: #C5A059;
+  border-bottom: 2px solid #C5A059;
+}
+
+/* Área Principal */
+.promocoes-main {
+  flex: 1;
+  padding: 60px 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Hero Section */
+.promocoes-hero {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.promocoes-hero .subtitle {
+  color: #C5A059;
+  font-weight: bold;
+  letter-spacing: 3px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.promocoes-hero .title {
+  font-size: 3rem;
+  font-family: 'Playfair Display', serif;
+  margin: 0 0 20px 0;
+  color: #ffffff;
+}
+
+.promocoes-hero p {
+  color: #aaaaaa;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Lista de Promoções */
+.promo-list-section {
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.section-title {
+  display: inline-block;
+  font-size: 1.4rem;
+  font-family: 'Playfair Display', serif;
+  color: #ffffff;
+  margin: 0 0 2rem;
+  border-bottom: 1px solid #222222;
+  padding-bottom: 0.5rem;
+}
+
+.promo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Cards de Produto */
+.promo-card {
+  background: #1a1a1a; /* Fundo do card igual ao info-card */
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.promo-card:hover {
+  transform: translateY(-5px);
+  border-color: #C5A059; /* Destaque sutil no hover */
+}
+
+.promo-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #C5A059; /* Tag em Dourado Premium para selo de oferta */
+  color: #000000;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 20px;
+  z-index: 2;
+  letter-spacing: 0.5px;
+}
+
+/* Caso queira manter um tom vermelho para "oferta", mas que combine com o tema Dark:
+.promo-badge {
+  background: #8A1C1C; 
+  color: #ffffff;
+}
+*/
+
+.promo-card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.promo-card-image.placeholder {
+  background: #1b1b1b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777777;
+  font-size: 0.85rem;
+}
+
+.promo-card-content {
+  padding: 1.5rem;
+}
+
+.promo-tag {
+  color: #C5A059;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.promo-card-content h4 {
+  margin: 0.5rem 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.promo-card-content .origem {
+  color: #aaaaaa;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.promo-card-content .descricao {
+  font-size: 0.9rem;
+  color: #cccccc;
+  margin-bottom: 1.5rem;
+  line-height: 1.45;
+}
+
+.price-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.price-label {
+  font-size: 0.8rem;
+  color: #888888;
+}
+
+.promo-price {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #C5A059; /* Alinhado com o .product-card-price anterior */
+}
+
+/* Botões */
+.btn-primary {
+  background-color: #C5A059;
+  color: #000000;
+  border: 1px solid #C5A059;
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px; /* Padronizado com os botões do gerenciador */
+  cursor: pointer;
+  font-weight: 700;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #d4b26a;
+  border-color: #d4b26a;
+  color: #000000;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.btn-submit {
+  background-color: #C5A059;
+  color: #000000;
+  border: none;
+  padding: 1rem 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover:not(:disabled) {
+  background-color: #d4b26a;
+}
+
+.btn-submit:disabled {
+  background-color: #4a3e26;
+  color: #888888;
+  cursor: not-allowed;
+}
+
+/* Clube VIP Newsletter */
+.vip-club-section {
+  background-color: #161616; /* Fundo igual ao contact-form-section */
+  border: 1px solid #222222;
+  color: #ffffff;
+  padding: 3rem;
+  border-radius: 24px; /* Cantos arredondados elegantes como o painel */
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.vip-club-content h3 {
+  font-family: 'Playfair Display', serif;
+  color: #C5A059;
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+}
+
+.vip-club-content p {
+  color: #bbbbbb;
+}
+
+.vip-form {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.vip-form input {
+  flex: 1;
+  padding: 15px;
+  border: 1px solid #333333;
+  background: #121212;
+  color: #ffffff;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vip-form input::placeholder {
+  color: #555555;
+}
+
+.vip-form input:focus {
+  outline: none;
+  border-color: #C5A059;
+  box-shadow: 0 0 0 1px #C5A059;
+}
+
+/* Responsividade adaptada */
+@media (max-width: 900px) {
+  .promocoes-header nav {
+    display: none;
+  }
+  
+  .promocoes-main {
+    padding: 40px 20px;
+  }
+
+  .vip-form {
+    flex-direction: column;
+  }
+}
