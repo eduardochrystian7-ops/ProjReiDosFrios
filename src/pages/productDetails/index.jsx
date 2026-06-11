@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useProdutos } from '../../hooks/useProdutos';
 import gorgonzolaImg from '../../assets/gorgonzola.jpg';
 import prosciuttoImg from '../../assets/prosciutto.jpg';
@@ -7,19 +7,33 @@ import brieImg from '../../assets/brie.png';
 import './ProductCard.css'; // Arquivo de estilos que criaremos
 
 export function ProductCard({ id, nome, origem, preco, imagem, tag, description }) {
-  const { adicionarProduto } = useProdutos();
+  const { adicionarProduto, toggleFavorito, favoritos } = useProdutos();
+  const navigate = useNavigate();
+  const produtoFavoritado = favoritos.some((produto) => String(produto.id) === String(id));
 
   const handleAdicionar = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     adicionarProduto({ nome, origem, preco, imagem, tag, description });
     alert('produto adicionado!');
+  };
+
+  const handleFavoritar = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleFavorito({ id, nome, origem, preco, imagem, tag, description });
+    if (!produtoFavoritado) {
+      navigate('/perfil?tab=favoritos');
+    }
   };
 
   return (
     <Link to={`/produto/${id}`} className="product-card-link">
       <div className="product-card">
         {tag && <span className="product-tag">{tag}</span>}
-        
+        <button type="button" className={`btn-favorite ${produtoFavoritado ? 'favorited' : ''}`} onClick={handleFavoritar}>
+          {produtoFavoritado ? '♥' : '♡'}
+        </button>
         <div className="product-image-container">
           <img src={imagem} alt={nome} className="product-image" />
         </div>

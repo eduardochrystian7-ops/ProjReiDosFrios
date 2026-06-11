@@ -7,6 +7,12 @@ export function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState(() => localStorage.getItem('@ReiDosFrios:email') ?? '');
   const [senha, setSenha] = useState(() => localStorage.getItem('@ReiDosFrios:senha') ?? '');
+  const [showForgot, setShowForgot] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
+  const [forgotEmail, setForgotEmail] = useState('');
+  const [signupName, setSignupName] = useState('');
+  const [signupEmail, setSignupEmail] = useState('');
+  const [signupSenha, setSignupSenha] = useState('');
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -64,7 +70,7 @@ export function Login() {
           </div>
 
           <div className="forgot-password">
-            <a href="#">Esqueci minha senha</a>
+            <button type="button" className="link-button" onClick={() => setShowForgot(true)}>Esqueci minha senha</button>
           </div>
 
           <button type="submit" className="btn-primary">
@@ -75,7 +81,7 @@ export function Login() {
             <span>Ou</span>
           </div>
 
-          <button type="button" className="btn-secondary">
+          <button type="button" className="btn-secondary" onClick={() => setShowSignup(true)}>
             Criar conta imperial →
           </button>
         </form>
@@ -88,6 +94,60 @@ export function Login() {
           <a href="#">FAQ</a>
           <a href="#">Trabalhe Conosco</a>
         </footer>
+
+        {/* Sheet: Esqueceu senha */}
+        {showForgot && (
+          <div className="sheet-overlay" onClick={() => setShowForgot(false)}>
+            <div className="sheet" onClick={(e) => e.stopPropagation()}>
+              <div className="sheet-header">
+                <h3>Recuperar senha</h3>
+                <button className="sheet-close" onClick={() => setShowForgot(false)}>×</button>
+              </div>
+              <form className="sheet-form" onSubmit={(e) => {
+                e.preventDefault();
+                // Simula envio de e-mail de recuperação
+                alert(`Enviamos um link de recuperação para ${forgotEmail}`);
+                setShowForgot(false);
+              }}>
+                <label>Informe seu e-mail</label>
+                <input type="email" value={forgotEmail} onChange={(e) => setForgotEmail(e.target.value)} required />
+                <div className="sheet-actions">
+                  <button type="submit" className="btn-primary">Enviar link</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
+        {/* Sheet: Criar conta */}
+        {showSignup && (
+          <div className="sheet-overlay" onClick={() => setShowSignup(false)}>
+            <div className="sheet" onClick={(e) => e.stopPropagation()}>
+              <div className="sheet-header">
+                <h3>Criar Conta Imperial</h3>
+                <button className="sheet-close" onClick={() => setShowSignup(false)}>×</button>
+              </div>
+              <form className="sheet-form" onSubmit={(e) => {
+                e.preventDefault();
+                // Simula criação de conta
+                localStorage.setItem('@ReiDosFrios:email', signupEmail);
+                localStorage.setItem('@ReiDosFrios:senha', signupSenha);
+                alert(`Conta criada para ${signupName} (${signupEmail})`);
+                setShowSignup(false);
+              }}>
+                <label>Nome completo</label>
+                <input type="text" value={signupName} onChange={(e) => setSignupName(e.target.value)} required />
+                <label>Email</label>
+                <input type="email" value={signupEmail} onChange={(e) => setSignupEmail(e.target.value)} required />
+                <label>Senha</label>
+                <input type="password" value={signupSenha} onChange={(e) => setSignupSenha(e.target.value)} required />
+                <div className="sheet-actions">
+                  <button type="submit" className="btn-primary">Criar conta</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
 
       </div>
     </div>
